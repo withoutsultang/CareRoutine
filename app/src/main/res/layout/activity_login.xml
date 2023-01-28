@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/img_appicon"
+        android:layout_width="46dp"
+        android:layout_height="55dp"
+        android:src="@drawable/pills"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="36dp" />
+
+    <ImageView
+        android:id="@+id/img_kakaoicon"
+        android:layout_width="44dp"
+        android:layout_height="46dp"
+        android:src="@drawable/kakaoicon"
+        app:
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Care\nRoutine"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="109dp" />
+
+    <TextView
+        android:id="@+id/txt_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="or"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <EditText
+        android:id="@+id/editboxId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Id"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <EditText
+        android:id="@+id/editboxPw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Password"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="416dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button1"
+        android:layout_width="204dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#000000"
+        android:enabled="false"
+        android:text="Login"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="475dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디 찾기"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="535dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 찾기"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="535dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

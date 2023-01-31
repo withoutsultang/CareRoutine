@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/setting"
             android:layout_width="25dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
             app:layout_constraintVertical_bias="0.194" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/ref_eff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="대표 효능 내용"
@@ -101,7 +101,6 @@
             tools:layout_editor_absoluteY="76dp" />
 
         <androidx.cardview.widget.CardView
-            android
             android:layout_width="276dp"
             android:layout_height="52dp"
             android:layout_marginStart="30dp"

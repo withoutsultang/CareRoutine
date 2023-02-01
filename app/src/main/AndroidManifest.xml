@@ -15,8 +15,11 @@
             android:name=".AlarmSettingActivity"
             android:exported="false" />
         <activity
+            android:name=".HealthCareActivity"
+            android:exported="true" />
+        <activity
             android:name=".SearchDrugActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FindAccountActivity"
             android:exported="false" />
@@ -24,8 +27,11 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
+            android:name=".DrugDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

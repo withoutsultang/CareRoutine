@@ -2,14 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET">
-    </uses-permission>
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">
-    </uses-permission>
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">
-    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CareRoutine"
         tools:targetApi="31">
+        <activity
+            android:name=".MemberCertify"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage"
+            android:exported="false" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -28,49 +29,39 @@
         <activity
             android:name=".PharmcyMapActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
         <activity
             android:name=".AlarmSettingActivity"
             android:exported="false" />
-
         <activity
             android:name=".HealthCareActivity"
             android:exported="false" />
-
         <activity
             android:name=".SearchDrugActivity"
             android:exported="false" />
-
         <activity
             android:name=".FindAccountActivity"
             android:exported="false" />
-
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".DrugDetailActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".AlarmActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

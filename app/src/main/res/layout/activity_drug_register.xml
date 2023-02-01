@@ -40,7 +40,7 @@
         android:id="@+id/btn_add"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:background="@drawable/btn_rectangle_black"
+        android:background="@drawable/btn_rectangle_white"
         android:text="추가하기"
         android:textAlignment="gravity"
         android:textSize="22sp"

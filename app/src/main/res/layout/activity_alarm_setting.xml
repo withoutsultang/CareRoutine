@@ -70,11 +70,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.963" />
 
+        <!-- android:background="none"
+        디버깅 때문에 임시 변경
+        -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="none"
+            android:background="@color/white"
             android:text="저장"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -85,11 +88,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.963" />
 
+        <!--상동-->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="none"
+            android:background="@color/white"
             android:text="취소"
             android:textSize="25sp"
             android:textStyle="bold"

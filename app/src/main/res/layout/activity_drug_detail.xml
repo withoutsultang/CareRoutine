@@ -7,6 +7,9 @@
     tools:context=".DrugDetailActivity">
 
 
+    <!--    android:background="@drawable/stroke_black"
+    오류 때문에 잠깐 뺏어요
+    -->
     <ScrollView
         android:id="@+id/detail_Scroll"
         android:layout_width="387dp"
@@ -14,7 +17,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="22dp"
-        android:background="@drawable/stroke_black"
+
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,12 +39,15 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <!--android:background="@drawable/stroke_black"
+                상동
+                -->
                 <ImageView
                     android:id="@+id/drug_Pic"
                     android:layout_width="match_parent"
                     android:layout_height="111dp"
                     android:layout_weight="1"
-                    android:background="@drawable/stroke_black"
+
                     android:padding="7dp"
                     android:src="@drawable/tylenol" />
 

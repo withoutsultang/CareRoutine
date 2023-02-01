@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="CornerSize30Percent" parent="">
+        <item name="cornerSize">30%</item>
+    </style>
+    <style name="CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+</resources>

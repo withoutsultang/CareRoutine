@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/Source"
-            app:layout_constraintEnd_toStartOf="@+id/Thumnail"
+            app:layout_constraintEnd_toStartOf="@+id/Thumbnail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,22 +46,22 @@
             android:layout_marginBottom="9dp"
             android:text="출처 :  ㅇㄴㅇㅇ"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Thumnail"
+            app:layout_constraintEnd_toStartOf="@+id/Thumbnail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Title" />
 
-        <ImageView
-            android:id="@+id/Thumnail"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/Thumbnail"
             android:layout_width="162dp"
             android:layout_height="123dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="9dp"
-            android:background="@drawable/background_rectangle"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="7dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/CornerSize10Percent"
             app:srcCompat="@drawable/drug"
             tools:srcCompat="@tools:sample/avatars[3]" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,11 +16,17 @@
         android:theme="@style/Theme.CareRoutine"
         tools:targetApi="31">
         <activity
+            android:name=".Notice"
+            android:exported="false" />
+        <activity
             android:name=".DrugRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".HealthCareDetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".Setting"
+            android:exported="false" />
         <activity
             android:name=".MemberCertify"
             android:exported="false" />

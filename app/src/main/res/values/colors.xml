@@ -11,4 +11,5 @@
     <color name="lightpink">#FDD9D9</color>
     <color name="realpink">#F88888</color>
     <color name="gray">#F4F4F4</color>
+    <color name="transparent">#00000000</color>
 </resources>

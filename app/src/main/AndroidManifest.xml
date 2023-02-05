@@ -22,11 +22,17 @@
             android:name=".EditPassword"
             android:exported="false" />
         <activity
+            android:name=".Notice"
+            android:exported="false" />
+        <activity
             android:name=".DrugRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".HealthCareDetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".Setting"
+            android:exported="false" />
         <activity
             android:name=".MemberCertify"
             android:exported="false" />

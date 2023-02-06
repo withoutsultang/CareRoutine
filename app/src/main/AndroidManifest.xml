@@ -25,6 +25,12 @@
             android:name=".Notice"
             android:exported="false" />
         <activity
+            android:name=".UpdateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".DrugRegisterActivity"
             android:exported="false" />
         <activity
@@ -38,7 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".MyPage"
-            android:exported="false" />
+            android:exported="true" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

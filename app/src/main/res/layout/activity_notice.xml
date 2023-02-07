@@ -54,6 +54,10 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="150dp"/>
             </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"/>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -74,7 +78,10 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="150dp"/>
             </TableRow>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"/>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

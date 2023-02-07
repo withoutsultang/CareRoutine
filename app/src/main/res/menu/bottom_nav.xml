@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pill_nav"
+        android:icon="@drawable/pill_nav" />
+    <item
+        android:id="@+id/calendar_nav"
+        android:icon="@drawable/calendar_nav" />
+    <item
+        android:id="@+id/home_nav"
+        android:icon="@drawable/home_nav" />
+    <item
+        android:id="@+id/healthcare_nav"
+        android:icon="@drawable/healthcare_nav" />
+    <item
+        android:id="@+id/setting_nav"
+        android:icon="@drawable/settingimg" />
+</menu>

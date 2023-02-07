@@ -94,7 +94,7 @@
         android:layout_height="36dp"
         android:background="@drawable/stroke_background"
         android:elevation="50dp"
-        android:text="123456789"
+        android:text="내 주변 폐의약품 수거함 간단 검색"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -109,7 +109,7 @@
         android:layout_height="36dp"
         android:background="@drawable/stroke_background"
         android:elevation="50dp"
-        android:text="123456789"
+        android:text="겨울철 감기 예방하는 방법 😷"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -118,4 +118,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
         app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

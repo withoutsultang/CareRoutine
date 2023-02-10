@@ -16,37 +16,37 @@
         android:theme="@style/Theme.CareRoutine"
         tools:targetApi="31">
         <activity
-            android:name=".HealthCareEditor"
+            android:name=".view.HealthCareEditor"
             android:exported="false" />
         <activity
-            android:name=".EditEmail"
+            android:name=".view.EditEmail"
             android:exported="false" />
         <activity
-            android:name=".EditPassword"
+            android:name=".view.EditPassword"
             android:exported="false" />
         <activity
-            android:name=".Notice"
+            android:name=".view.Notice"
             android:exported="false" />
         <activity
-            android:name=".UpdateAccountActivity"
+            android:name=".view.UpdateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteAccountActivity"
+            android:name=".view.DeleteAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".DrugRegisterActivity"
+            android:name=".view.DrugRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".HealthCareDetailActivity"
+            android:name=".view.HealthCareDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Setting"
+            android:name=".view.Setting"
             android:exported="false" />
         <activity
-            android:name=".MemberCertify"
+            android:name=".view.MemberCertify"
             android:exported="false" />
         <activity
-            android:name=".MyPage"
+            android:name=".view.MyPage"
             android:exported="true" />
 
         <meta-data
@@ -54,7 +54,7 @@
             android:value="758bed09e53b41fa875e69103a21100a" />
 
         <activity
-            android:name=".PharmcyMapActivity"
+            android:name=".view.PharmcyMapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,31 +63,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AlarmSettingActivity"
+            android:name=".view.AlarmSettingActivity"
             android:exported="false" />
         <activity
-            android:name=".HealthCareActivity"
+            android:name=".view.HealthCareActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchDrugActivity"
+            android:name=".view.SearchDrugActivity"
             android:exported="false" />
         <activity
-            android:name=".FindAccountActivity"
+            android:name=".view.FindAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".DrugDetailActivity"
+            android:name=".view.DrugDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AlarmActivity"
+            android:name=".view.AlarmActivity"
             android:exported="false" />
     </application>
 

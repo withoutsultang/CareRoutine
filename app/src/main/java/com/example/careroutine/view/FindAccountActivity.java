@@ -1,14 +1,16 @@
-package com.example.careroutine;
+package com.example.careroutine.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Setting extends AppCompatActivity {
+import com.example.careroutine.R;
+
+public class FindAccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_find_account);
     }
 }

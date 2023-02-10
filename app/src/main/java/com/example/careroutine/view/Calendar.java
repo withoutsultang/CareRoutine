@@ -1,10 +1,12 @@
-package com.example.careroutine;
+package com.example.careroutine.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
+
+import com.example.careroutine.R;
 
 public class Calendar extends AppCompatActivity {
 

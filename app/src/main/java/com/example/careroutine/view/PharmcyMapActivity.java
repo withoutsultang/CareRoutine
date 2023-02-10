@@ -1,4 +1,4 @@
-package com.example.careroutine;
+package com.example.careroutine.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.ViewGroup;
+
+import com.example.careroutine.R;
 
 import net.daum.mf.map.api.MapView;
 

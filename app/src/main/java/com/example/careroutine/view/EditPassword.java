@@ -1,14 +1,16 @@
-package com.example.careroutine;
+package com.example.careroutine.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DrugRegisterActivity extends AppCompatActivity {
+import com.example.careroutine.R;
+
+public class EditPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drug_register);
+        setContentView(R.layout.activity_edit_password);
     }
 }

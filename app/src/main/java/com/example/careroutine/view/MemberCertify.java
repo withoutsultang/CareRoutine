@@ -1,8 +1,10 @@
-package com.example.careroutine;
+package com.example.careroutine.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.careroutine.R;
 
 public class MemberCertify extends AppCompatActivity {
 

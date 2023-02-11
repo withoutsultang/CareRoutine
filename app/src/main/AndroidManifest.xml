@@ -14,7 +14,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.CareRoutine"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".test"
+            android:exported="true" />
         <activity
             android:name=".view.HealthCareEditor"
             android:exported="false" />
@@ -64,7 +68,7 @@
         </activity>
         <activity
             android:name=".view.AlarmSettingActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".view.HealthCareActivity"
             android:exported="false" />

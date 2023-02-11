@@ -7,6 +7,7 @@
     tools:context=".view.HealthCareActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="409dp"
         android:layout_height="679dp"
         android:layout_marginBottom="50dp"
@@ -22,4 +23,11 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/health_care_view" />
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="409dp"
+        android:layout_height="48dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="682dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

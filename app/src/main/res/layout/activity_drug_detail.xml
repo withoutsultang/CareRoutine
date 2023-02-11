@@ -8,17 +8,15 @@
 
     <ScrollView
         android:id="@+id/detail_Scroll"
-        android:layout_width="387dp"
-        android:layout_height="595dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="22dp"
-        android:background="@drawable/stroke_background"
+        android:layout_width="364dp"
+        android:layout_height="621dp"
+        android:background="@xml/stroke_background"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/allergy_Check">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45999998">
 
 
         <LinearLayout
@@ -162,14 +160,16 @@
         android:id="@+id/allergy_Check"
         android:layout_width="166dp"
         android:layout_height="17dp"
-        android:layout_marginTop="16dp"
         android:paddingLeft="7dp"
         android:text="알러지유무"
         android:textAlignment="textStart"
         android:textSize="14sp"
         app:flow_horizontalAlign="start"
+        app:layout_constraintBottom_toTopOf="@+id/detail_Scroll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

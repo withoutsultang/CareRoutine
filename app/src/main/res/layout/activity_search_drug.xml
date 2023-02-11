@@ -18,7 +18,7 @@
         android:layout_height="25dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="6dp"
-        android:background="@drawable/btn_rectangle_pink"
+        android:background="@xml/btn_rectangle_pink"
         android:text="알러지 있는 약 모아보기"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -70,7 +70,7 @@
         android:layout_height="538dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/stroke_background"
+        android:background="@xml/stroke_background"
         android:elevation="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchlayout" />

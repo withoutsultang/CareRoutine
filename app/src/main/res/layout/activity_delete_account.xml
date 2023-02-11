@@ -48,7 +48,7 @@
         android:id="@+id/button8"
         android:layout_width="142dp"
         android:layout_height="48dp"
-        android:background="@drawable/stroke_icon"
+        android:background="@xml/stroke_icon"
         android:elevation="10dp"
         android:text="탈퇴하기"
         android:textColor="#000000"

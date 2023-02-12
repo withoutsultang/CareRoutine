@@ -5,6 +5,7 @@ plugins {
 android {
     namespace 'com.example.careroutine'
     compileSdk 33
+    buildFeatures { dataBinding = true }
 
     defaultConfig {
         applicationId "com.example.careroutine"

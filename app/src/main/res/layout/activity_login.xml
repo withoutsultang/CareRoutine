@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity">
+    <data>
+        <variable>
+            name = "viewModel"
+            type = "com.example.careroutine.viewmodel.LoginViewModel"
+        </variable>
+    </data>
 
     <ImageView
         android:id="@+id/img_appicon"
@@ -103,23 +109,23 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:text="비밀번호 찾기"
+        android:layout_marginEnd="76dp"
+        android:text="회원가입"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button1"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.207" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="아이디 찾기"
+        android:layout_marginStart="40dp"
+        android:text="아이디/비밀번호 찾기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/button1"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.07" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

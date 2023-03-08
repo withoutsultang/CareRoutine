@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SearchDrugActivity">
+    tools:context="com.withoutsultang.careroutine.view.SearchDrugActivity">
 
 
     <!-- 알러지 모아보기 버튼 -->

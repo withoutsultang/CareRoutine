@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <data>
 <variable
-    name="viewModel"
-    type="com.example.careroutine.viewmodel.SignUpViewModel" />
+    name="signUpViewModel"
+    type="com.withoutsultang.careroutine.viewmodel.SignUpViewModel" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +30,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextId"
+        android:id="@+id/eID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.126" />
 
     <EditText
-        android:id="@+id/editTextPw"
+        android:id="@+id/ePW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -58,14 +58,14 @@
         android:hint="password"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextId"
+        app:layout_constraintEnd_toEndOf="@+id/eID"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextId"
-        app:layout_constraintTop_toBottomOf="@+id/editTextId"
+        app:layout_constraintStart_toStartOf="@+id/eID"
+        app:layout_constraintTop_toBottomOf="@+id/eID"
         app:layout_constraintVertical_bias="0.03" />
 
     <EditText
-        android:id="@+id/editTextPw2"
+        android:id="@+id/eBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -76,14 +76,14 @@
         android:hint="birthday"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintEnd_toEndOf="@+id/eEmail"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintStart_toStartOf="@+id/eEmail"
+        app:layout_constraintTop_toBottomOf="@+id/eEmail"
         app:layout_constraintVertical_bias="0.046" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/eEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -94,14 +94,14 @@
         android:hint="email"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextName"
+        app:layout_constraintEnd_toEndOf="@+id/eName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        app:layout_constraintStart_toStartOf="@+id/eName"
+        app:layout_constraintTop_toBottomOf="@+id/eName"
         app:layout_constraintVertical_bias="0.041" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/eName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -112,14 +112,14 @@
         android:hint="name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPw"
+        app:layout_constraintEnd_toEndOf="@+id/ePW"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPw"
+        app:layout_constraintStart_toStartOf="@+id/ePW"
         app:layout_constraintTop_toBottomOf="@+id/pw_constraint"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/verify"
+        android:id="@+id/bVerify"
         android:layout_width="58dp"
         android:layout_height="44dp"
         android:layout_alignParentEnd="true"
@@ -132,12 +132,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.278"
-        app:layout_constraintStart_toEndOf="@+id/editTextId"
+        app:layout_constraintStart_toEndOf="@+id/eID"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.304" />
 
     <Button
-        android:id="@+id/verify2"
+        android:id="@+id/bRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -147,22 +147,22 @@
         android:textColor="@color/white"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPw2"
-        app:layout_constraintStart_toStartOf="@+id/editTextPw2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPw2"
+        app:layout_constraintEnd_toEndOf="@+id/eBirth"
+        app:layout_constraintStart_toStartOf="@+id/eBirth"
+        app:layout_constraintTop_toBottomOf="@+id/eBirth"
         app:layout_constraintVertical_bias="0.313" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editTextPw2"
+        android:layout_alignEnd="@+id/eBirth"
         android:layout_alignParentBottom="true"
         android:text="이용약관 개인정보처리방침 \n 위치기반서비스 이용약관"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextPw2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPw2"
+        app:layout_constraintStart_toStartOf="@+id/eBirth"
+        app:layout_constraintTop_toBottomOf="@+id/eBirth"
         app:layout_constraintVertical_bias="0.036" />
 
     <TextView
@@ -176,8 +176,8 @@
         android:textColor="#FF0000"
         android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextId"
-        app:layout_constraintTop_toBottomOf="@+id/editTextId"
+        app:layout_constraintStart_toStartOf="@+id/eID"
+        app:layout_constraintTop_toBottomOf="@+id/eID"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -191,12 +191,13 @@
         android:textColor="#FF0000"
         android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextPw"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPw"
+        app:layout_constraintStart_toStartOf="@+id/ePW"
+        app:layout_constraintTop_toBottomOf="@+id/ePW"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/agreeCheckBox"
+        android:id="@+id/cbAgree"
+        android:checked="@={signUpViewModel.agree}"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_alignParentEnd="true"
@@ -207,7 +208,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPw2"
+        app:layout_constraintTop_toBottomOf="@+id/eBirth"
         app:layout_constraintVertical_bias="0.037" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

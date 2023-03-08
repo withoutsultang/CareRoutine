@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:enableOnBackInvokedCallback="true"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +18,7 @@
         android:theme="@style/Theme.CareRoutine"
         tools:targetApi="31">
         <activity
-            android:name=".view.StartActivity"
+            android:name="com.withoutsultang.careroutine.view.StartActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -25,37 +27,37 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".view.HealthCareEditor"
+            android:name="com.withoutsultang.careroutine.view.HealthCareEditor"
             android:exported="false" />
         <activity
-            android:name=".view.EditEmail"
+            android:name="com.withoutsultang.careroutine.view.EditEmail"
             android:exported="false" />
         <activity
-            android:name=".view.EditPassword"
+            android:name="com.withoutsultang.careroutine.view.EditPassword"
             android:exported="false" />
         <activity
-            android:name=".view.Notice"
+            android:name="com.withoutsultang.careroutine.view.Notice"
             android:exported="false" />
         <activity
-            android:name=".view.UpdateAccountActivity"
+            android:name="com.withoutsultang.careroutine.view.UpdateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DeleteAccountActivity"
+            android:name="com.withoutsultang.careroutine.view.DeleteAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DrugRegisterActivity"
+            android:name="com.withoutsultang.careroutine.view.DrugRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.HealthCareDetailActivity"
+            android:name="com.withoutsultang.careroutine.view.HealthCareDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.Setting"
+            android:name="com.withoutsultang.careroutine.view.Setting"
             android:exported="false" />
         <activity
-            android:name=".view.MemberCertify"
+            android:name="com.withoutsultang.careroutine.view.MemberCertify"
             android:exported="false" />
         <activity
-            android:name=".view.MyPage"
+            android:name="com.withoutsultang.careroutine.view.MyPage"
             android:exported="false" />
 
         <meta-data
@@ -63,35 +65,35 @@
             android:value="758bed09e53b41fa875e69103a21100a" />
 
         <activity
-            android:name=".view.PharmcyMapActivity"
+            android:name="com.withoutsultang.careroutine.view.PharmcyMapActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".view.AlarmSettingActivity"
+            android:name="com.withoutsultang.careroutine.view.AlarmSettingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.HealthCareActivity"
+            android:name="com.withoutsultang.careroutine.view.HealthCareActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SearchDrugActivity"
+            android:name="com.withoutsultang.careroutine.view.SearchDrugActivity"
             android:exported="false" />
         <activity
-            android:name=".view.FindAccountActivity"
+            android:name="com.withoutsultang.careroutine.view.FindAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SignUpActivity"
+            android:name="com.withoutsultang.careroutine.view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DrugDetailActivity"
+            android:name="com.withoutsultang.careroutine.view.DrugDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name="com.withoutsultang.careroutine.view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.withoutsultang.careroutine.view.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.AlarmActivity"
+            android:name="com.withoutsultang.careroutine.view.AlarmActivity"
             android:exported="false" />
     </application>
 

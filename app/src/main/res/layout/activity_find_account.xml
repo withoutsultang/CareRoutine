@@ -1,273 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.withoutsultang.careroutine.view.FindAccountActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!--아이디 찾기-->
-    <TextView
-        android:id="@+id/txt_title_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:text="아이디 찾기"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/women"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.withoutsultang.careroutine.viewmodel.FindAccountViewModel" />
+    </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!--받는 여자 임티-->
-    <ImageView
-        android:id="@+id/women"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/women"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="40dp" />
+        <!--아이디 찾기-->
+        <TextView
+            android:id="@+id/txt_title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="아이디 찾기"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/women"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--이메일 입력-->
-    <EditText
-        android:id="@+id/tbx_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginBottom="3dp"
-        android:ems="11"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/tbx_birth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_id" />
+        <!--받는 여자 임티-->
+        <ImageView
+            android:id="@+id/women"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="251dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/women"
+            app:layout_constraintBottom_toTopOf="@+id/tbx_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_title_id"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--생년월일 입력-->
-    <EditText
-        android:id="@+id/tbx_birth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="44dp"
-        android:ems="11"
-        android:hint="birthday"
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/txt_title_pw"
-        app:layout_constraintEnd_toStartOf="@+id/btn_search"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbx_email" />
+        <!--이메일 입력-->
+        <EditText
+            android:id="@+id/tbx_email"
+            android:text="@={viewModel.fidemail}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginBottom="95dp"
+            android:ems="11"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/emoji_man"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/women" />
 
 
-    <!--아이디 검색 버튼-->
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@xml/black_radius_btn"
-        android:text="search"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        app:backgroundTint="@color/black"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="145dp" />
+        <!--생년월일 입력-->
+        <EditText
+            android:id="@+id/tbx_birth"
+            android:text="@={viewModel.fidbirth}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="44dp"
+            android:ems="11"
+            android:hint="birthday"
+            android:inputType="date"
+            app:layout_constraintBottom_toTopOf="@+id/txt_title_pw"
+            app:layout_constraintEnd_toStartOf="@+id/btn_search"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tbx_email" />
 
 
-    <!--비밀번호 찾기-->
-    <TextView
-        android:id="@+id/txt_title_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
-        android:text="비밀번호 찾기"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbx_birth" />
+        <!--아이디 검색 버튼-->
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="145dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="156dp"
+            android:background="@xml/black_radius_btn"
+            android:text="search"
+            android:onClick="@{() -> viewModel.onClickSearch()}"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_send"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tbx_birth"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--킹받는 남자 임티-->
-    <ImageView
-        android:id="@+id/emoji_man"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/man"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="226dp" />
+        <!--비밀번호 찾기-->
+        <TextView
+            android:id="@+id/txt_title_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="8dp"
+            android:text="비밀번호 찾기"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/emoji_man"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tbx_birth" />
 
 
-    <!--아이디 입력-->
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginBottom="3dp"
-        android:ems="11"
-        android:hint="id"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_pw" />
+        <!--킹받는 남자 임티-->
+        <ImageView
+            android:id="@+id/emoji_man"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="232dp"
+            android:layout_marginBottom="204dp"
+            android:src="@drawable/man"
+            app:layout_constraintBottom_toTopOf="@+id/emoji_hammer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_title_pw"
+            app:layout_constraintTop_toBottomOf="@+id/tbx_email" />
 
 
-    <!--이메일 입력-->
-    <EditText
-        android:id="@+id/editTextTextEmailAddress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="3dp"
-        android:ems="11"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        app:layout_constraintEnd_toStartOf="@+id/btn_send"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        <!--아이디 입력-->
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginBottom="3dp"
+            android:ems="11"
+            android:hint="id"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_pw" />
 
 
-    <!--인증번호 입력-->
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="18dp"
-        android:ems="11"
-        android:hint="code"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/btn_check_code"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        <!--이메일 입력-->
+        <EditText
+            android:id="@+id/editTextTextEmailAddress2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="3dp"
+            android:ems="11"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+            app:layout_constraintEnd_toStartOf="@+id/btn_send"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
 
-    <!--전송 버튼-->
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@xml/black_radius_btn"
-        android:text="SEND"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        app:backgroundTint="@color/black"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="331dp" />
+        <!--인증번호 입력-->
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="18dp"
+            android:ems="11"
+            android:hint="code"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/btn_check_code"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
 
 
-    <!--체크 버튼-->
-    <Button
-        android:id="@+id/btn_check_code"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@xml/black_radius_btn"
-        android:text="CHECK"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        app:backgroundTint="@color/black"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="379dp" />
+        <!--전송 버튼-->
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="18dp"
+            android:background="@xml/black_radius_btn"
+            android:text="SEND"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_check_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextTextEmailAddress2"
+            app:layout_constraintTop_toBottomOf="@+id/btn_search" />
 
 
-    <!--비밀번호 재설정-->
+        <!--체크 버튼-->
+        <Button
+            android:id="@+id/btn_check_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="181dp"
+            android:background="@xml/black_radius_btn"
+            android:text="CHECK"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_check_pw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_send" />
 
 
-    <!--망치 임티-->
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="비밀번호 찾기"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
-
-    <ImageView
-        android:id="@+id/emoji_hammer"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/hammer"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="460dp" />
+        <!--비밀번호 재설정-->
 
 
-    <!--변경할 비밀번호 입력-->
+        <!--망치 임티-->
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="비밀번호 찾기"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+            app:layout_constraintEnd_toStartOf="@+id/emoji_hammer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+        <ImageView
+            android:id="@+id/emoji_hammer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="232dp"
+            android:layout_marginBottom="241dp"
+            android:src="@drawable/hammer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/emoji_man" />
 
 
-    <!--변경할 비밀번호 재입력-->
-    <EditText
-        android:id="@+id/editTextTextPassword2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="119dp"
-        android:ems="11"
-        android:hint="변경할 비밀번호"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_check_pw"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        <!--변경할 비밀번호 입력-->
 
 
-    <!--확인 버튼-->
+        <!--변경할 비밀번호 재입력-->
+        <EditText
+            android:id="@+id/editTextTextPassword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="119dp"
+            android:ems="11"
+            android:hint="변경할 비밀번호"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_check_pw"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="157dp"
-        android:ems="11"
-        android:hint="변경할 비밀번호"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
-        android:id="@+id/btn_check_pw"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@xml/black_radius_btn"
-        android:text="CHECK"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        app:backgroundTint="@color/black"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="573dp" />
+        <!--확인 버튼-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="157dp"
+            android:ems="11"
+            android:hint="변경할 비밀번호"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <Button
+            android:id="@+id/btn_check_pw"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="111dp"
+            android:background="@xml/black_radius_btn"
+            android:text="CHECK"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextTextPassword2"
+            app:layout_constraintTop_toBottomOf="@+id/btn_check_code" />
+
+        <!--버튼-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

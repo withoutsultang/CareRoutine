@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "557342323260",
-    "project_id": "careroutine-2cfc6",
-    "storage_bucket": "careroutine-2cfc6.appspot.com"
+    "project_number": "159336053701",
+    "project_id": "careroutine-9056b",
+    "storage_bucket": "careroutine-9056b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:557342323260:android:48c5176d2d618ebf620939",
+        "mobilesdk_app_id": "1:159336053701:android:13ad9b29456d8a31fc29ac",
         "android_client_info": {
           "package_name": "com.example.careroutine"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDrpcpRcY2gOewsjznWm3bt8XOOw6pvs8k"
+          "current_key": "AIzaSyCvotLg_jdE_79GN6g_-ym8sJ96JsX5DUU"
         }
       ],
       "services": {

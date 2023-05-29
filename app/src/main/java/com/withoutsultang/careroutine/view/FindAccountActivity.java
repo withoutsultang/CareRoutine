@@ -10,6 +10,8 @@ import com.example.careroutine.databinding.ActivityFindAccountBinding;
 import com.withoutsultang.careroutine.viewmodel.FindAccountViewModel;
 
 public class FindAccountActivity extends AppCompatActivity {
+
+    //뷰모델 선언
     private FindAccountViewModel viewModel;
 
     @Override

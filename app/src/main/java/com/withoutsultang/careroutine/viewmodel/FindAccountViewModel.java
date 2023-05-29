@@ -25,7 +25,7 @@ public class FindAccountViewModel extends ViewModel {
         String text1 = fidemail.get();
         String text2 = fidbirth.get();
 
-        myRef.setValue(text2);
+        myRef.child(text1).setValue(text2);
 
         /*if (text1 != null && text2 != null) {
             databaseReference.child(text1).setValue(text2);

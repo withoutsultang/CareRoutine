@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FindAccountViewModel extends ViewModel {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("users");
+    DatabaseReference userRef = database.getReference("users");
 
     public ObservableField<String> fidemail = new ObservableField<>("");
     public ObservableField<String> fidbirth = new ObservableField<>("");
@@ -25,7 +25,7 @@ public class FindAccountViewModel extends ViewModel {
         String text1 = fidemail.get();
         String text2 = fidbirth.get();
 
-        myRef.child(text1).setValue(text2);
+        userRef.child(text1).setValue(text2);
 
         /*if (text1 != null && text2 != null) {
             databaseReference.child(text1).setValue(text2);

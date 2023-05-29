@@ -1,125 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.withoutsultang.careroutine.view.LoginActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/img_appicon"
-        android:layout_width="46dp"
-        android:layout_height="55dp"
-        android:src="@drawable/drug"
-        app:layout_constraintBottom_toTopOf="@+id/txt_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.withoutsultang.careroutine.viewmodel.LoginViewModel" />
+    </data>
 
-    <ImageView
-        android:id="@+id/img_kakaoicon"
-        android:layout_width="32dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/kakaoicon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_title"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/txt_title"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title"
-        app:layout_constraintVertical_bias="0.0" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.withoutsultang.careroutine.view.LoginActivity">
 
-    <TextView
-        android:id="@+id/txt_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Care\nRoutine"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
+        <ImageView
+            android:id="@+id/img_appicon"
+            android:layout_width="46dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="455dp"
+            android:src="@drawable/drug"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_or"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="or"
-        app:layout_constraintBottom_toTopOf="@+id/editboxId"
-        app:layout_constraintEnd_toEndOf="@+id/img_kakaoicon"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="@+id/img_kakaoicon"
-        app:layout_constraintTop_toBottomOf="@+id/img_kakaoicon" />
+        <ImageView
+            android:id="@+id/img_kakaoicon"
+            android:layout_width="32dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/kakaoicon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_title"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/txt_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editboxId"
-        android:layout_width="211dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="364dp"
-        android:background="@xml/box_border"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Id"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_or"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/txt_or" />
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Care\nRoutine"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
 
-    <EditText
-        android:id="@+id/editboxPw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editboxId"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editboxId"
-        app:layout_constraintTop_toBottomOf="@+id/editboxId"
-        app:layout_constraintVertical_bias="0.023" />
+        <TextView
+            android:id="@+id/txt_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or"
+            app:layout_constraintBottom_toTopOf="@+id/editboxId"
+            app:layout_constraintEnd_toEndOf="@+id/img_kakaoicon"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="@+id/img_kakaoicon"
+            app:layout_constraintTop_toBottomOf="@+id/img_kakaoicon" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button1"
-        android:layout_width="204dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#000000"
-        android:enabled="false"
-        android:text="Login"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editboxPw"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="@+id/editboxPw"
-        app:layout_constraintTop_toBottomOf="@+id/editboxPw"
-        app:layout_constraintVertical_bias="0.057"/>
+        <EditText
+            android:id="@+id/editboxId"
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:text="비밀번호 찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+            android:hint="ID"
+            android:layout_width="211dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="364dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_or"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/txt_or" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="아이디 찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+        <EditText
+            android:id="@+id/editboxPw"
+
+            android:hint="PASSWORD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editboxId"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editboxId"
+            app:layout_constraintTop_toBottomOf="@+id/editboxId"
+            app:layout_constraintVertical_bias="0.023" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1"
+
+            android:layout_width="204dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#000000"
+            android:enabled="false"
+            android:text="Login"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editboxPw"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="@+id/editboxPw"
+            app:layout_constraintTop_toBottomOf="@+id/editboxPw"
+            app:layout_constraintVertical_bias="0.057" />
+
+        <TextView
+            android:id="@+id/textView3"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="비밀번호 찾기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/button1"
+            app:layout_constraintVertical_bias="0.047" />
+
+        <TextView
+            android:id="@+id/textView2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="아이디 찾기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/button1"
+            app:layout_constraintVertical_bias="0.047" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:onClick="@{() -> viewModel.onClickSignUp()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="74dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginBottom="181dp"
+            android:text="회원가입"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button1"
+            app:layout_constraintStart_toStartOf="@+id/editboxPw"
+            app:layout_constraintTop_toBottomOf="@+id/img_appicon" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -29,8 +29,10 @@ public class SignUpViewModel extends ViewModel {
         this.context = context;
     }
 
+    //중복체크 버튼
     public void onClickVerify() {
     }
+
     public void onClickSignUp() {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();

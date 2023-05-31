@@ -77,10 +77,16 @@
 
 
         <!--아이디 검색 버튼-->
+
+
+        <!--비밀번호 찾기-->
+
+
+        <!--킹받는 남자 임티-->
         <Button
             android:id="@+id/btn_search"
-            android:layout_width="78dp"
-            android:layout_height="41dp"
+            android:layout_width="82dp"
+            android:layout_height="49dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="61dp"
             android:layout_marginBottom="5dp"
@@ -93,13 +99,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/tbx_femlbirth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tbx_femlbirth"
-            app:layout_constraintTop_toBottomOf="@+id/tbx_femlname" />
+            app:layout_constraintTop_toBottomOf="@+id/tbx_femlname"
+            app:layout_constraintVertical_bias="0.0" />
 
-
-        <!--비밀번호 찾기-->
-
-
-        <!--킹받는 남자 임티-->
         <TextView
             android:id="@+id/txt_title_pw"
             android:layout_width="wrap_content"
@@ -173,13 +175,13 @@
 
         <Button
             android:id="@+id/btn_send"
-            android:onClick="@{() -> viewModel.onClickSend()}"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="56dp"
             android:background="@xml/black_radius_btn"
+            android:onClick="@{() -> viewModel.onClickSend()}"
             android:text="SEND"
             android:textColor="@color/white"
             android:textSize="10dp"
@@ -197,13 +199,13 @@
 
         <Button
             android:id="@+id/btn_check_code"
-            android:onClick="@{() -> viewModel.onClickCheckCode()}"
             android:layout_width="77dp"
             android:layout_height="45dp"
             android:layout_marginTop="13dp"
             android:layout_marginEnd="62dp"
             android:layout_marginBottom="7dp"
             android:background="@xml/black_radius_btn"
+            android:onClick="@{() -> viewModel.onClickCheckCode()}"
             android:text="CHECK"
             android:textColor="@color/white"
             android:textSize="10dp"
@@ -211,7 +213,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/editTextNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextNumber"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
+            app:layout_constraintVertical_bias="0.125" />
 
         <TextView
             android:id="@+id/textView5"

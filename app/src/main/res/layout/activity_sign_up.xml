@@ -100,6 +100,25 @@
         app:layout_constraintTop_toBottomOf="@+id/eName"
         app:layout_constraintVertical_bias="0.041" />
 
+
+    <Button
+        android:id="@+id/btn_emailCheck"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@xml/black_radius_btn"
+        android:text="Check"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toEndOf="@+id/eID"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.557" />
+
     <EditText
         android:id="@+id/eName"
         android:layout_width="wrap_content"
@@ -119,13 +138,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bVerify"
-        android:layout_width="58dp"
-        android:layout_height="44dp"
+        android:id="@+id/btn_idCheck"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:background="@xml/black_radius_btn"
-        android:text="중복확인"
+        android:text="CHECK"
         android:textColor="@color/white"
         android:textSize="12dp"
         app:backgroundTint="@color/black"

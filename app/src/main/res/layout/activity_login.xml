@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.withoutsultang.careroutine.view.LoginActivity">
 
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.withoutsultang.careroutine.viewmodel.LoginViewModel" />
+    </data>
+
     <ImageView
         android:id="@+id/img_appicon"
         android:layout_width="46dp"
         android:layout_height="55dp"
         android:src="@drawable/drug"
-        app:layout_constraintBottom_toTopOf="@+id/txt_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="21dp" />
 
     <ImageView
         android:id="@+id/img_kakaoicon"
         android:layout_width="32dp"
         android:layout_height="36dp"
-        android:layout_marginTop="20dp"
         android:src="@drawable/kakaoicon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_title"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/txt_title"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="243dp" />
 
     <TextView
         android:id="@+id/txt_title"
@@ -38,88 +37,77 @@
         android:textColor="@color/black"
         android:textSize="50dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="97dp" />
 
     <TextView
         android:id="@+id/txt_or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="or"
-        app:layout_constraintBottom_toTopOf="@+id/editboxId"
-        app:layout_constraintEnd_toEndOf="@+id/img_kakaoicon"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="@+id/img_kakaoicon"
-        app:layout_constraintTop_toBottomOf="@+id/img_kakaoicon" />
+        tools:layout_editor_absoluteX="199dp"
+        tools:layout_editor_absoluteY="294dp" />
 
     <EditText
         android:id="@+id/editboxId"
-        android:layout_width="211dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="364dp"
-        android:background="@xml/box_border"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Id"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_or"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/txt_or" />
+        android:text="@={loginViewModel.id}"
+        android:hint="ID"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="329dp" />
 
     <EditText
         android:id="@+id/editboxPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editboxId"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editboxId"
-        app:layout_constraintTop_toBottomOf="@+id/editboxId"
-        app:layout_constraintVertical_bias="0.023" />
+        android:inputType="textPassword"
+        android:text="@={loginViewModel.password}"
+        android:hint="Password"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="374dp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button1"
-        android:layout_width="204dp"
-        android:layout_height="48dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
         android:backgroundTint="#000000"
-        android:enabled="false"
+        android:enabled="true"
         android:text="Login"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editboxPw"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="@+id/editboxPw"
-        app:layout_constraintTop_toBottomOf="@+id/editboxPw"
-        app:layout_constraintVertical_bias="0.057"/>
+        android:onClick="@{() -> loginViewModel.loginClicked()}"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#000000"
+        android:enabled="true"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="493dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
         android:text="비밀번호 찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="558dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:text="아이디 찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.047" />
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="558dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

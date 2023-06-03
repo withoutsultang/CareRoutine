@@ -24,6 +24,7 @@ public class LoginViewModel extends ViewModel {
     private Context context;
 
     private static MutableLiveData<Boolean> navigateToSignUpActivity = new MutableLiveData<>();
+    private static MutableLiveData<Boolean> navigateToFindAccountActivity = new MutableLiveData<>();
 
     public LoginViewModel(Context context) {
         this.context = context;
@@ -36,11 +37,25 @@ public class LoginViewModel extends ViewModel {
 
     }
 
+    public void onClickFindAccount() {
+
+        navigateToFindAccountActivity();
+
+    }
+
     public static LiveData<Boolean> getNavigateToSignUpActivity() {
         return navigateToSignUpActivity;
     }
 
     public void navigateToSignUpActivity() {
         navigateToSignUpActivity.setValue(true);
+    }
+
+    public static LiveData<Boolean> getNavigateToFindAccountActivity() {
+        return navigateToFindAccountActivity;
+    }
+
+    public void navigateToFindAccountActivity() {
+        navigateToFindAccountActivity.setValue(true);
     }
 }

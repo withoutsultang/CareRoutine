@@ -31,5 +31,12 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        viewModel.getNavigateToFindAccountActivity().observe(this, navigate -> {
+            if (navigate) {
+                startActivity(new Intent(this, FindAccountActivity.class));
+                finish();
+            }
+        });
     }
 }

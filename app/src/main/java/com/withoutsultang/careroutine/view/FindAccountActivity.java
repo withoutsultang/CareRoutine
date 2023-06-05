@@ -1,9 +1,9 @@
 package com.withoutsultang.careroutine.view;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-
-import android.os.Bundle;
 
 import com.example.careroutine.R;
 import com.example.careroutine.databinding.ActivityFindAccountBinding;

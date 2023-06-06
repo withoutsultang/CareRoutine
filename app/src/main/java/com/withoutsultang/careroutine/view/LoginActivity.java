@@ -12,7 +12,8 @@ import com.withoutsultang.careroutine.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel viewModel;
+    private LoginViewModel viewModel = new LoginViewModel(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

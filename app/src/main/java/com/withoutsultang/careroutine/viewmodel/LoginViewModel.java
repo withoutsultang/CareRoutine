@@ -3,7 +3,6 @@ package com.withoutsultang.careroutine.viewmodel;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.widget.Toast;
 
 import androidx.databinding.ObservableField;
@@ -11,22 +10,30 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.careroutine.R;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider.Factory;
+
+import com.example.careroutine.BuildConfig;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.safetynet.SafetyNet;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.withoutsultang.careroutine.model.User;
+import com.withoutsultang.careroutine.view.FindAccountActivity;
+
 
 public class LoginViewModel extends ViewModel {
 
     private FirebaseDatabase database;
+    private static final int RC_SIGN_IN = 9001;
 
     DatabaseReference userRef = database.getReference("users");
 
@@ -35,17 +42,14 @@ public class LoginViewModel extends ViewModel {
 
     private Context context;
 
-    public LoginViewModel() {
+    public LoginViewModel(Context context) {
+        this.context = context;
         database = FirebaseDatabase.getInstance();
     }
 
-    private static MutableLiveData<Boolean> navigateToSignUpActivity = new MutableLiveData<>();
-    private static MutableLiveData<Boolean> navigateToFindPwActivity = new MutableLiveData<>();
-    private static MutableLiveData<Boolean> navigateToFindIdActivity = new MutableLiveData<>();
-
-    public LoginViewModel(Context context) {
-        this.context = context;
-    }
+    private MutableLiveData<Boolean> navigateToSignUpActivity = new MutableLiveData<>();
+    private MutableLiveData<Boolean> navigateToFindPwActivity = new MutableLiveData<>();
+    private MutableLiveData<Boolean> navigateToFindIdActivity = new MutableLiveData<>();
 
     public void login() {
         String id = eID.get();
@@ -65,7 +69,7 @@ public class LoginViewModel extends ViewModel {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, FindAccountActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         context.startActivity(intent);
 
@@ -88,10 +92,28 @@ public class LoginViewModel extends ViewModel {
         activity.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    public void firebaseAuthWithGoogle(GoogleSignInAccount account, OnCompletionListener<AuthResult> onCompletionListener){
+    public void firebaseAuthWithGoogle(GoogleSignInAccount account, OnCompleteListener<AuthResult> onCompletionListener){
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-        database.signInWithCredential(credential)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
                 .addOnCompleteListener(onCompletionListener);
+    }
+
+    public void loginWithRecaptcha(Activity activity){
+        SafetyNet.getClient(activity).verifyWithRecaptcha(BuildConfig.RECAPTCHA_SITE_KEY)
+                .addOnSuccessListener(activity, success ->{
+                    login();
+                })
+                .addOnFailureListener(activity, e -> {
+                    if (e instanceof ApiException) {
+                        ApiException apiException = (ApiException) e;
+                        // An error occurred when communicating with the reCAPTCHA service.
+                        int statusCode = apiException.getStatusCode();
+                        Toast.makeText(activity, "인증 실패", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // A different, unknown type of error occurred.
+                        Toast.makeText(activity, "인증 실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void signUp() {
@@ -104,15 +126,15 @@ public class LoginViewModel extends ViewModel {
         navigateToFindPwActivity();
     }
 
-    public static LiveData<Boolean> getNavigateToSignUpActivity() {
+    public  LiveData<Boolean> getNavigateToSignUpActivity() {
         return navigateToSignUpActivity;
     }
 
-    public static LiveData<Boolean> getNavigateToFindIdActivity() {
+    public  LiveData<Boolean> getNavigateToFindIdActivity() {
         return navigateToFindIdActivity;
     }
 
-    public static LiveData<Boolean> getNavigateToFindPwActivity() {
+    public  LiveData<Boolean> getNavigateToFindPwActivity() {
         return navigateToFindPwActivity;
     }
 

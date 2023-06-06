@@ -68,7 +68,7 @@
                 android:id="@+id/Margin"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
 
             <EditText
                 android:id="@+id/editboxPw"
@@ -84,7 +84,7 @@
                 android:id="@+id/Margin2"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
@@ -93,7 +93,7 @@
                 android:backgroundTint="#000000"
                 android:enabled="true"
                 android:text="Login"
-                android:onClick="@{() -> viewModel.login()}"
+                android:onClick="@{() -> viewModel.loginWithRecaptcha()}"
                 android:textColor="@color/white" />
 
             <LinearLayout

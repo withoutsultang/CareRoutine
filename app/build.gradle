@@ -3,6 +3,10 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
 android {
     namespace 'com.example.careroutine'
     compileSdk 33
@@ -16,6 +20,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "RECAPTCHA_SITE_KEY", properties.getProperty("recaptcha_site_key")
+        buildConfigField "String", "RECAPTCHA_SECRET_KEY", properties.getProperty("recaptcha_secret_key")
     }
 
     buildTypes {

@@ -91,7 +91,7 @@
             android:layout_marginEnd="61dp"
             android:layout_marginBottom="5dp"
             android:background="@xml/black_radius_btn"
-            android:onClick="@{() -> viewModel.onClickSearch()}"
+            android:onClick="@{() -> viewModel.onClickSearch(viewModel.femlname, viewModel.femlbirth)}"
             android:text="search"
             android:textColor="@color/white"
             android:textSize="10dp"

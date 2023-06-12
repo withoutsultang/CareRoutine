@@ -93,7 +93,7 @@
                 android:backgroundTint="#000000"
                 android:enabled="true"
                 android:text="Login"
-                android:onClick="@{() -> viewModel.loginWithRecaptcha(activity)}"
+                android:onClick="@{view -> viewModel.loginWithRecaptcha(view.getContext())}"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -173,7 +173,7 @@
                 android:id="@+id/btnLoginG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.loginG()}"
+                android:onClick="@{view -> viewModel.loginG(view.getContext())}"
                 />
 
         </LinearLayout>

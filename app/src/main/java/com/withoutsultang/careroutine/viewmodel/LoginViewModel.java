@@ -80,7 +80,8 @@ public class LoginViewModel extends ViewModel {
                 });
     }
 
-    public void loginG(Activity activity) {
+    public void loginG(Context context) {
+        Activity activity = (Activity) context;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(activity.getString(com.example.careroutine.R.string.default_web_client_id))
                 .requestEmail()
@@ -98,7 +99,8 @@ public class LoginViewModel extends ViewModel {
                 .addOnCompleteListener(onCompletionListener);
     }
 
-    public void loginWithRecaptcha(Activity activity){
+    public void loginWithRecaptcha(Context context){
+        Activity activity = (Activity) context;
         SafetyNet.getClient(activity).verifyWithRecaptcha(BuildConfig.RECAPTCHA_SITE_KEY)
                 .addOnSuccessListener(activity, success ->{
                     login();

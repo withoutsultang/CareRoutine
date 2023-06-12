@@ -19,7 +19,7 @@
         <LinearLayout
             android:id="@+id/TopMargin"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="24dp"
             android:orientation="vertical">
 
         </LinearLayout>
@@ -38,36 +38,63 @@
                 android:textColor="@color/black" />
 
             <LinearLayout
-                android:layout_width="174dp"
+                android:layout_width="222dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"></LinearLayout>
 
-            <TextView
-                android:id="@+id/txtMypage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Page"
-                android:textColor="@color/black" />
+<!--            <TextView-->
+<!--                android:id="@+id/txtMypage"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="My Page"-->
+<!--                android:textColor="@color/black" />-->
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:orientation="vertical"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="199dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
+            <!--            <androidx.appcompat.widget.AppCompatButton-->
+            <!--                android:id="@+id/button13"-->
+            <!--                android:layout_width="350dp"-->
+            <!--                android:layout_height="36dp"-->
+            <!--                android:background="@xml/stroke10_background"-->
+            <!--                android:elevation="50dp"-->
+            <!--                android:text="내 주변 폐의약품 수거함 간단 검색"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="16sp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="14dp"-->
+            <!--                android:orientation="vertical"></LinearLayout>-->
+
+            <!--            <androidx.appcompat.widget.AppCompatButton-->
+            <!--                android:id="@+id/button14"-->
+            <!--                android:layout_width="350dp"-->
+            <!--                android:layout_height="36dp"-->
+            <!--                android:background="@xml/stroke10_background"-->
+            <!--                android:elevation="50dp"-->
+            <!--                android:text="겨울철 감기 예방하는 방법 😷"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="16sp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="14dp"
+                android:orientation="vertical"></LinearLayout>
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button13"
+                android:id="@+id/button15"
                 android:layout_width="350dp"
                 android:layout_height="36dp"
                 android:background="@xml/stroke10_background"
                 android:elevation="50dp"
-                android:text="내 주변 폐의약품 수거함 간단 검색"
+                android:text="약 등록하기"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -77,64 +104,25 @@
                 android:layout_height="14dp"
                 android:orientation="vertical"></LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button14"
-                android:layout_width="350dp"
-                android:layout_height="36dp"
-                android:background="@xml/stroke10_background"
-                android:elevation="50dp"
-                android:text="겨울철 감기 예방하는 방법 😷"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/cardView2"-->
+            <!--                android:layout_width="349dp"-->
+            <!--                android:layout_height="87dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                app:cardCornerRadius="10dp">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="14dp"
-                android:orientation="vertical"></LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="349dp"
-                android:layout_height="87dp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="10dp">
-
-                <TextView
-                    android:id="@+id/textView36"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="약 등록하기"
-                    android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
+            <!--                <TextView-->
+            <!--                    android:id="@+id/textView36"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:text="약 등록하기"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textSize="30dp"-->
+            <!--                    android:textStyle="bold" />-->
+            <!--            </androidx.cardview.widget.CardView>-->
 
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pill_list"
-            android:layout_width="341dp"
-            android:layout_height="396dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/main_recycler" />
-
-        <FrameLayout
-            android:id="@+id/menu_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="?attr/actionBarSize"/>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:itemIconTint="@drawable/nav_item_color"
-            app:itemTextColor="@drawable/nav_item_color"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav" />
 
     </LinearLayout>
 </layout>

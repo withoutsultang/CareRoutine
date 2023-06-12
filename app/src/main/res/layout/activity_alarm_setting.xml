@@ -15,80 +15,86 @@
         android:paddingBottom="30dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_delete_all"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="전체 삭제"
             android:textColor="@color/white"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:layout_alignParentEnd="true" />
 
         <Switch
             android:id="@+id/switch_vibe"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="17dp"
+            android:layout_marginRight="317dp"
             android:text="진동 |"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true" />
+            android:textStyle="bold" />
     </RelativeLayout>
 
-    <!-- 알람 매니저 -->
+    <!-- 아침, 점심, 저녁 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TimePicker
-            android:id="@+id/time_picker"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_morning"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:timePickerMode="spinner" />
+            android:layout_weight="1"
+            android:text="아침"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
-        <RadioGroup
-            android:id="@+id/radio_group"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_afternoon"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="점심"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
-            <RadioButton
-                android:id="@+id/radio_morning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아침" />
-
-            <RadioButton
-                android:id="@+id/radio_afternoon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="점심" />
-
-            <RadioButton
-                android:id="@+id/radio_evening"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저녁" />
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_evening"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="12dp"
-            android:text="추가" />
-
-        <LinearLayout
-            android:id="@+id/alarm_info_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_weight="1"
+            android:text="저녁"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
-    <!-- 알람 정보 -->
+    <!-- 시간 선택 타임피커 -->
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner" />
+
+    <!-- 추가 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="12dp"
+        android:text="추가" />
+
+    <!-- 알림 정보 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/alarm_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -99,7 +105,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 아침 알람 -->
+            <!-- 아침 알림 -->
             <LinearLayout
                 android:id="@+id/layout_alarm_morning"
                 android:layout_width="match_parent"
@@ -107,14 +113,29 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tbx_morning"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="아침"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tbx_morning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="아침"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_delete_morning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="삭제"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/alarm_morning_info"
@@ -125,17 +146,9 @@
                     android:orientation="horizontal">
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_add_morning"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="#00ff0000"
-                    android:text="+"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
             </LinearLayout>
 
-            <!-- 점심 알람 -->
+            <!-- 점심 알림 -->
             <LinearLayout
                 android:id="@+id/layout_alarm_afternoon"
                 android:layout_width="match_parent"
@@ -143,14 +156,28 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tbx_afternoon"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="점심"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tbx_afternoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="점심"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_delete_afternoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="삭제"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/alarm_afternoon_info"
@@ -160,18 +187,9 @@
                     android:elevation="5dp"
                     android:orientation="horizontal">
                 </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_add_afternoon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="#00ff0000"
-                    android:text="+"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
             </LinearLayout>
 
-            <!-- 저녁 알람 -->
+            <!-- 저녁 알림 -->
             <LinearLayout
                 android:id="@+id/layout_alarm_evening"
                 android:layout_width="match_parent"
@@ -179,14 +197,29 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tbx_evening"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="저녁"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tbx_evening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="저녁"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_delete_evening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="삭제"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/alarm_evening_info"
@@ -197,44 +230,35 @@
                     android:orientation="horizontal">
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_add_evening"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="#00ff0000"
-                    android:text="+"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <!-- 하단부 -->
+    <!-- 하단바 -->
     <LinearLayout
-        android:id="@+id/layout_btn_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00ff0000"
-            android:text="취소"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00ff0000"
             android:text="저장"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"
+            android:textColor="@color/black" />
     </LinearLayout>
+
 </LinearLayout>

@@ -1,5 +1,9 @@
 package com.withoutsultang.careroutine.view;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -18,6 +22,8 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.example.careroutine.R;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -30,6 +36,9 @@ public class AlarmSettingActivity extends Activity {
     private Switch switchVibe;
     private Button btnDelete;
 
+    // Firebase Realtime Database에 대한 참조를 가져옴
+    private DatabaseReference alarmRef;
+
     // 채널 ID 정의
     private static final String CHANNEL_ID = "my_channel_id";
 
@@ -38,14 +47,17 @@ public class AlarmSettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_setting);
 
+        // Firebase Realtime Database의 "alarms" 경로에 대한 참조를 가져옴
+        alarmRef = FirebaseDatabase.getInstance().getReference("alarms");
+
         // XML에서 뷰 요소들을 찾아와 변수에 할당
         alarmInfoContainer = findViewById(R.id.alarm_info_container);
         timePicker = findViewById(R.id.time_picker);
+        alarmTimes = new ArrayList<>();
+        btnDelete = findViewById(R.id.btn_delete_all);
         Button btnAdd = findViewById(R.id.btn_add);
         Button btnSave = findViewById(R.id.btn_save);
-        switchVibe = findViewById(R.id.switch_vibe);
-        btnDelete = findViewById(R.id.btn_delete);
-        alarmTimes = new ArrayList<>();
+        Button btnCancel = findViewById(R.id.btn_cancel);
 
         // '추가' 버튼 클릭 시 알람 정보 추가
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +78,14 @@ public class AlarmSettingActivity extends Activity {
             @Override
             public void onClick(View v) { deleteAllAlarms(); }
         });
+
+        // '취소' 버튼 클릭 시 이전 화면으로 돌아가기
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { cancelActivity(); }
+        });
     }
+
 
     // 알람 정보 추가
     private void addAlarmInfo() {
@@ -95,6 +114,21 @@ public class AlarmSettingActivity extends Activity {
     private void removeAlarmInfo(String alarmTime) {
         alarmTimes.remove(alarmTime);
         refreshAlarmInfo();
+
+        // Firebase Realtime Database에서 알람 정보 제거
+        alarmRef.orderByValue().equalTo(alarmTime).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    snapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // 에러 처리
+            }
+        });
     }
 
     // 알람 정보를 갱신하여 컨테이너에 표시
@@ -165,6 +199,10 @@ public class AlarmSettingActivity extends Activity {
             notificationManager.notify(alarmId, builder.build());
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+            // Firebase Realtime Database에 알람 정보 추가
+            String alarmKey = alarmRef.push().getKey();
+            alarmRef.child(alarmKey).setValue(alarmTime);
         }
 
         Toast.makeText(this, "알람이 저장되었습니다.", Toast.LENGTH_SHORT).show();
@@ -197,6 +235,14 @@ public class AlarmSettingActivity extends Activity {
         alarmTimes.clear();
         refreshAlarmInfo();
 
+        // Firebase Realtime Database의 "alarms" 경로에 있는 모든 알람 정보 삭제
+        alarmRef.removeValue();
+
         Toast.makeText(this, "모든 알람이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    // 이전 화면으로 이동
+    private void cancelActivity() {
+        onBackPressed();
     }
 }

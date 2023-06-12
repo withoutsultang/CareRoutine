@@ -23,7 +23,6 @@ public class AlarmPopupActivity extends Activity {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 알람 중지 동작을 여기에 구현
                 cancelAlarm();
 
                 // 팝업 화면 닫기

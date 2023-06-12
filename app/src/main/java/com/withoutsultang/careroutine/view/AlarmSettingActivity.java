@@ -151,11 +151,11 @@ public class AlarmSettingActivity extends Activity {
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
                     .setAutoCancel(true);
 
-//            // 진동 설정
-//            if (switchVibe.isChecked()) {
-//                long[] vibrationPattern = {0, 500, 200, 500}; // 진동 패턴: 지연, 진동, 지연, 진동...
-//                builder.setVibration(vibrationPattern);
-//            }
+            // 진동 설정
+            if (switchVibe.isChecked()) {
+                long[] vibrationPattern = {0, 500, 200, 500}; // 진동 패턴: 지연, 진동, 지연, 진동...
+                builder.setVibrate(vibrationPattern);
+            }
 
             // 알림 등록
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);

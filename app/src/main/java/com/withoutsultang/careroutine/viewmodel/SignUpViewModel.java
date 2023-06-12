@@ -129,7 +129,7 @@ public class SignUpViewModel extends ViewModel {
             return;
         }
         // 생년월일 형식 확인
-        if (!birthday.matches("\\d{4}/\\d{2}/\\d{2}")) {
+        if (!birthday.matches("\\d{4}\\d{2}\\d{2}")) {
             Toast.makeText(context, "올바른 생년월일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
             return;
         }

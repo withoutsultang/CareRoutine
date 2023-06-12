@@ -1,0 +1,23 @@
+<!-- activity_alarm_popup.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="복용 시간입니다."
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <Button
+        android:id="@+id/btn_stop_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중지"
+        android:padding="8dp"/>
+
+</LinearLayout>

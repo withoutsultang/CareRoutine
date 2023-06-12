@@ -15,12 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import com.example.careroutine.R;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,22 +38,22 @@ public class AlarmSettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_setting);
 
+        // XML에서 뷰 요소들을 찾아와 변수에 할당
         alarmInfoContainer = findViewById(R.id.alarm_info_container);
         timePicker = findViewById(R.id.time_picker);
         Button btnAdd = findViewById(R.id.btn_add);
         Button btnSave = findViewById(R.id.btn_save);
         switchVibe = findViewById(R.id.switch_vibe);
         btnDelete = findViewById(R.id.btn_delete);
-
         alarmTimes = new ArrayList<>();
 
+        // '추가' 버튼 클릭 시 알람 정보 추가
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                addAlarmInfo();
-            }
+            public void onClick(View v) { addAlarmInfo(); }
         });
 
+        // '저장' 버튼 클릭 시 알람 저장
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,21 +61,23 @@ public class AlarmSettingActivity extends Activity {
             }
         });
 
+        // '삭제' 버튼 클릭 시 모든 알람 삭제
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                deleteAllAlarms();
-            }
+            public void onClick(View v) { deleteAllAlarms(); }
         });
     }
 
+    // 알람 정보 추가
     private void addAlarmInfo() {
         int hour = timePicker.getHour();
         int minute = timePicker.getMinute();
 
+        // 시간을 형식에 맞게 문자열로 변환하여 리스트에 추가
         String alarmTime = String.format("%02d:%02d", hour, minute);
         alarmTimes.add(alarmTime);
 
+        // 버튼 생성 및 클릭 리스너 설정
         Button alarmButton = new Button(this);
         alarmButton.setText(String.valueOf(alarmTime));
         alarmButton.setOnClickListener(new View.OnClickListener() {
@@ -88,14 +87,17 @@ public class AlarmSettingActivity extends Activity {
             }
         });
 
+        // 알람 정보를 담고 있는 버튼을 컨테이너에 추가
         alarmInfoContainer.addView(alarmButton);
     }
 
+    // 알람 정보 제거
     private void removeAlarmInfo(String alarmTime) {
         alarmTimes.remove(alarmTime);
         refreshAlarmInfo();
     }
 
+    // 알람 정보를 갱신하여 컨테이너에 표시
     private void refreshAlarmInfo() {
         alarmInfoContainer.removeAllViews();
         for (String alarmTime : alarmTimes) {
@@ -111,6 +113,7 @@ public class AlarmSettingActivity extends Activity {
         }
     }
 
+    // 알람 저장
     private void saveAlarms() {
         if (alarmTimes.isEmpty()) {
             Toast.makeText(this, "알람을 추가해주세요.", Toast.LENGTH_SHORT).show();
@@ -135,14 +138,14 @@ public class AlarmSettingActivity extends Activity {
             calendar.set(Calendar.SECOND, 0);
 
             if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-                // 알람 시간이 과거인 경우, 캘린더에 1일을 추가합니다.
+                // 알람 시간이 과거인 경우, 캘린더에 1일을 추가
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
 
             int alarmId = requestCode++;
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmId, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            // 알림 생성
+            // 알림 빌더 생성
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.drawable.drug)
                     .setContentTitle("알람")
@@ -157,7 +160,7 @@ public class AlarmSettingActivity extends Activity {
                 builder.setVibrate(vibrationPattern);
             }
 
-            // 알림 등록
+            // 알람 등록
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             notificationManager.notify(alarmId, builder.build());
 
@@ -167,7 +170,7 @@ public class AlarmSettingActivity extends Activity {
         Toast.makeText(this, "알람이 저장되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
-    // 알림 채널 생성
+    // 알람 채널 생성
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "AlarmChannel";
@@ -181,7 +184,7 @@ public class AlarmSettingActivity extends Activity {
         }
     }
 
-
+    // 모든 알람 삭제
     private void deleteAllAlarms() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);

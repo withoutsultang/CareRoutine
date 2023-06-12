@@ -8,12 +8,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.careroutine.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +32,36 @@ public class AlarmSettingActivity extends AppCompatActivity {
     private LinearLayout alarmMorningInfo, alarmAfternoonInfo, alarmEveningInfo;
     private DatabaseReference databaseRef;
 
+    private String selectedDrug;
+
+    private ChildEventListener childEventListener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
+            showAlarmInfo(snapshot);
+        }
+
+        @Override
+        public void onChildChanged(@NonNull DataSnapshot snapshot, String previousChildName) {
+            showAlarmInfo(snapshot);
+        }
+
+        @Override
+        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            clearAlarmInfo(snapshot.getKey());
+        }
+
+        @Override
+        public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+        }
+    };
+
+    // 사용자의 고유 ID를 저장할 변수 추가
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +69,12 @@ public class AlarmSettingActivity extends AppCompatActivity {
 
         // Firebase Realtime Database 초기화
         databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child("alarms");
+
+        // 사용자의 고유 ID 가져오기
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            userId = currentUser.getUid();
+        }
 
         // 뷰 요소 초기화
         txtDrug = findViewById(R.id.txtDrug);
@@ -59,7 +98,7 @@ public class AlarmSettingActivity extends AppCompatActivity {
         btnDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseRef.removeValue();
+                databaseRef.child(userId).removeValue();
             }
         });
 
@@ -118,30 +157,19 @@ public class AlarmSettingActivity extends AppCompatActivity {
         });
 
         // Firebase Realtime Database에서 데이터 변경 감지 및 표시
-        databaseRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
-                showAlarmInfo(snapshot);
-            }
+        databaseRef.child(userId).child("morning").addChildEventListener(childEventListener);
+        databaseRef.child(userId).child("afternoon").addChildEventListener(childEventListener);
+        databaseRef.child(userId).child("evening").addChildEventListener(childEventListener);
+    }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, String previousChildName) {
-                showAlarmInfo(snapshot);
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                clearAlarmInfo(snapshot.getKey());
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        // ChildEventListener 해제
+        databaseRef.child(userId).child("morning").removeEventListener(childEventListener);
+        databaseRef.child(userId).child("afternoon").removeEventListener(childEventListener);
+        databaseRef.child(userId).child("evening").removeEventListener(childEventListener);
     }
 
     // SearchDrugActivity에서 선택한 값을 가져와서 txtDrug에 표시
@@ -149,21 +177,25 @@ public class AlarmSettingActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            String drugName = data.getStringExtra("drugName");
-            txtDrug.setText(drugName);
+            selectedDrug = data.getStringExtra("drugName"); // 선택된 약 이름을 변수에 저장
+            txtDrug.setText(selectedDrug); // 선택된 약 이름을 텍스트뷰에 표시
         }
     }
 
     // Firebase 데이터베이스에 알림 추가
     private void addAlarm(String time) {
-        String drugName = txtDrug.getText().toString().trim();
+        if (selectedDrug == null) {
+            Toast.makeText(this, "약을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
 
-        String key = databaseRef.push().getKey();
+        String key = databaseRef.child(time).push().getKey();
         if (key != null) {
             Map<String, Object> alarmValues = new HashMap<>();
-            alarmValues.put("drugName", drugName);
+            alarmValues.put("drugName", selectedDrug); // 선택된 약 이름 사용
             alarmValues.put("hour", hour);
             alarmValues.put("minute", minute);
 
@@ -173,7 +205,7 @@ public class AlarmSettingActivity extends AppCompatActivity {
 
     // Firebase 데이터베이스에서 알림 삭제
     private void deleteAlarm(String time) {
-        databaseRef.child(time).removeValue();
+        databaseRef.child(userId).child(time).removeValue();
     }
 
     // Firebase 데이터베이스에서 가져온 알림 정보를 화면에 표시
@@ -184,53 +216,50 @@ public class AlarmSettingActivity extends AppCompatActivity {
             int hour = dataSnapshot.child("hour").getValue(Integer.class);
             int minute = dataSnapshot.child("minute").getValue(Integer.class);
 
-            TextView textView = createAlarmTextView(drugName, hour, minute);
+            TextView textView = createTextView(drugName, hour, minute);
 
-            switch (key) {
-                case "morning":
-                    alarmMorningInfo.removeAllViews();
-                    alarmMorningInfo.addView(textView);
-                    break;
-                case "afternoon":
-                    alarmAfternoonInfo.removeAllViews();
-                    alarmAfternoonInfo.addView(textView);
-                    break;
-                case "evening":
-                    alarmEveningInfo.removeAllViews();
-                    alarmEveningInfo.addView(textView);
-                    break;
+            if (key.equals("morning")) {
+                alarmMorningInfo.addView(textView);
+            } else if (key.equals("afternoon")) {
+                alarmAfternoonInfo.addView(textView);
+            } else if (key.equals("evening")) {
+                alarmEveningInfo.addView(textView);
             }
         }
     }
 
-    // 화면에 표시된 알림 정보를 삭제
-    private void clearAlarmInfo(String time) {
-        switch (time) {
-            case "morning":
+    // Firebase 데이터베이스에서 삭제된 알림 정보를 화면에서 제거
+    private void clearAlarmInfo(String key) {
+        if (key != null) {
+            if (key.equals("morning")) {
                 alarmMorningInfo.removeAllViews();
-                break;
-            case "afternoon":
+            } else if (key.equals("afternoon")) {
                 alarmAfternoonInfo.removeAllViews();
-                break;
-            case "evening":
+            } else if (key.equals("evening")) {
                 alarmEveningInfo.removeAllViews();
-                break;
+            }
         }
     }
 
     // 알림 정보를 담은 TextView 생성
-    private TextView createAlarmTextView(String drugName, int hour, int minute) {
+    private TextView createTextView(String drugName, int hour, int minute) {
         TextView textView = new TextView(this);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
+        );
+        params.setMargins(0, 0, 0, dpToPx(16));
+        textView.setLayoutParams(params);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         textView.setText(drugName + " - " + hour + ":" + minute);
         textView.setTextColor(ContextCompat.getColor(this, R.color.black));
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        textView.setPadding(8, 8, 8, 8);
-//        textView.setBackground(ContextCompat.getDrawable(this, R.xml.stroke_icon));
 
         return textView;
+    }
+
+    // dp를 px로 변환
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 }

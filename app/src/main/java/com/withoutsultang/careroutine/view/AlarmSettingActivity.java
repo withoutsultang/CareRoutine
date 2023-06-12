@@ -1,8 +1,11 @@
 package com.withoutsultang.careroutine.view;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -155,7 +158,7 @@ public class AlarmSettingActivity extends AppCompatActivity {
 
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
-                String result = data.getStringExtra("mFlags");
+                String result = data.getStringExtra("result");
                 txtDrug.setText(result);
                 // result에는 SecondActivity의 TextView의 텍스트가 저장되어 있습니다.
             }
@@ -186,31 +189,35 @@ public class AlarmSettingActivity extends AppCompatActivity {
 
     // Firebase 데이터베이스에서 가져온 알림 정보를 화면에 표시
     private void showAlarmInfo(DataSnapshot dataSnapshot) {
-        String key = dataSnapshot.getKey();
-        if (key != null) {
-            String drugName = dataSnapshot.child("drugName").getValue(String.class);
-            int hour = dataSnapshot.child("hour").getValue(Integer.class);
-            int minute = dataSnapshot.child("minute").getValue(Integer.class);
+        String time = dataSnapshot.getKey();
 
-            TextView textView = createAlarmTextView(drugName, hour, minute);
+        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+            String key = childSnapshot.getKey();
 
-            switch (key) {
-                case "morning":
-                    alarmMorningInfo.removeAllViews();
-                    alarmMorningInfo.addView(textView);
-                    break;
-                case "afternoon":
-                    alarmAfternoonInfo.removeAllViews();
-                    alarmAfternoonInfo.addView(textView);
-                    break;
-                case "evening":
-                    alarmEveningInfo.removeAllViews();
-                    alarmEveningInfo.addView(textView);
-                    break;
+            if (key != null) {
+                String drugName = childSnapshot.child("drugName").getValue(String.class);
+                int hour = childSnapshot.child("hour").getValue(Integer.class);
+                int minute = childSnapshot.child("minute").getValue(Integer.class);
+
+                TextView textView = createAlarmTextView(drugName, hour, minute);
+
+                switch (time) {
+                    case "morning":
+                        alarmMorningInfo.removeAllViews();
+                        alarmMorningInfo.addView(textView);
+                        break;
+                    case "afternoon":
+                        alarmAfternoonInfo.removeAllViews();
+                        alarmAfternoonInfo.addView(textView);
+                        break;
+                    case "evening":
+                        alarmEveningInfo.removeAllViews();
+                        alarmEveningInfo.addView(textView);
+                        break;
+                }
             }
         }
     }
-
 
 
     // 화면에 표시된 알림 정보를 삭제
@@ -239,9 +246,6 @@ public class AlarmSettingActivity extends AppCompatActivity {
         textView.setTextColor(ContextCompat.getColor(this, R.color.black));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         textView.setPadding(8, 8, 8, 8);
-//        textView.setBackground(ContextCompat.getDrawable(this, R.xml.stroke_icon));
-
         return textView;
     }
-
 }

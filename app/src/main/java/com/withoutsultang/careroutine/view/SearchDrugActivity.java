@@ -44,9 +44,9 @@ public class SearchDrugActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     Intent intent = new Intent();
-                    String drugName = binding.result.toString();
+                    String drugName = binding.result.getText().toString();
                     intent.putExtra("result", drugName);
-                    setResult(1, intent);
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
 

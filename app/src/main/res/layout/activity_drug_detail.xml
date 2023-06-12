@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.withoutsultang.careroutine.view.DrugDetailActivity">
+
+    <ScrollView
+        android:id="@+id/detail_Scroll"
+        android:layout_width="364dp"
+        android:layout_height="621dp"
+        android:background="@xml/stroke_background"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45999998">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/drug_Pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="111dp"
+                    android:layout_weight="1"
+                    android:padding="7dp"
+                    android:src="@drawable/tylenol"
+                    app:shapeAppearanceOverlay="@style/CornerSize10Percent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/drug_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="7dp"
+                        android:text="타이레놀정500mg"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/drug_Ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="아세트아미노펜 500mg"
+                        android:textAlignment="center"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/drug_Efcy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="7dp"
+                android:text="효능"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/drug_EfcyT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="10dp"
+                android:text="1. 주효능·효과 감기로 인한 발열 및 동통(통증), 두통, 신경통, 근육통, 월경통, 염좌통(삔 통증) \n2. 다음 질환에도 사용할 수 있다. 치통, 관절통, 류마티양 동통(통증)"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/drug_Use"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="7dp"
+                android:text="복용법"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/drug_UseT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="10dp"
+                android:text="만 12세 이상 소아 및 성인: \n1회 1~2정씩 1일 3-4회 (4-6시간 마다) 필요시 복용한다. \n1일 최대 4그램 (8정)을 초과하여 복용하지 않는다."
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/drug_Atpn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="7dp"
+                android:text="주의 사항"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/drug_AtpnT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="10dp"
+                android:text="1) 어린이의 손이 닿지 않는 곳에 보관한다. \n2) 의약품을 원래의 용기에서 꺼내어 다른 용기에 보관하는 것은 의약품의 오용(잘못사용)에 따른 사고 발생이나 의약품 품질 저하의 원인이 될 수 있으므로 원래의 용기에 넣고 꼭 닫아 보관한다."
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/drug_Deposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="7dp"
+                android:text="보관 방법"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/drug_DepositT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="10dp"
+                android:text="밀폐용기 실온보관"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Switch
+        android:id="@+id/allergy_Check"
+        android:layout_width="166dp"
+        android:layout_height="17dp"
+        android:paddingLeft="7dp"
+        android:text="알러지유무"
+        android:textAlignment="textStart"
+        android:textSize="14sp"
+        app:flow_horizontalAlign="start"
+        app:layout_constraintBottom_toTopOf="@+id/detail_Scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

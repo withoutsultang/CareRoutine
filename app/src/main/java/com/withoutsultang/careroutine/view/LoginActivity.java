@@ -1,50 +1,103 @@
-package com.withoutsultang.careroutine.view;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.careroutine.R;
-import com.example.careroutine.databinding.ActivityLoginBinding;
-import com.withoutsultang.careroutine.viewmodel.LoginViewModel;
+import com.google.android.gms.common.SignInButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.withoutsultang.careroutine.view.FindAccountActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel viewModel = new LoginViewModel(this);
-
+    private EditText editboxId, editboxPw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        ActivityLoginBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        editboxId = findViewById(R.id.editboxId);
+        editboxPw = findViewById(R.id.editboxPw);
 
-        viewModel = new LoginViewModel(this);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        Button btnSignUp = findViewById(R.id.btnSignUp);
+        TextView textViewFindId = findViewById(R.id.textView2);
+        SignInButton btnLoginG = findViewById(R.id.btnLoginG);
 
-        binding.setViewModel(viewModel);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
 
-        viewModel.getNavigateToSignUpActivity().observe(this, navigate -> {
-            if (navigate) {
-                startActivity(new Intent(this, SignUpActivity.class));
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+//                finish();
+//            }
+//        });
+
+        textViewFindId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, FindAccountActivity.class));
                 finish();
             }
         });
 
-        viewModel.getNavigateToFindIdActivity().observe(this, navigate -> {
-            if (navigate) {
-                startActivity(new Intent(this, FindAccountActivity.class));
-                finish();
+        btnLoginG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginG();
             }
         });
+    }
 
-        viewModel.getNavigateToFindPwActivity().observe(this, navigate -> {
-            if (navigate) {
-                startActivity(new Intent(this, FindAccountActivity.class));
-                finish();
-            }
-        });
+    private void login() {
+        String id = editboxId.getText().toString().trim();
+        String pw = editboxPw.getText().toString().trim();
 
+        if (TextUtils.isEmpty(id)) {
+            Toast.makeText(this, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(pw)) {
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(id, pw)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, FindAccountActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        // Perform login logic
+        // ...
+
+        Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LoginActivity.this, FindAccountActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void loginG() {
+        // Perform Google login logic
+        // ...
     }
 }

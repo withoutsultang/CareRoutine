@@ -1,189 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="viewModel"
-            type="com.withoutsultang.careroutine.viewmodel.LoginViewModel" />
-    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Contents"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/Contents"
+        android:id="@+id/Title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/TopMargin"
+        <ImageView
+            android:id="@+id/icon_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/drug" />
+
+        <TextView
+            android:id="@+id/txt_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Care\nRoutine"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp">
+
+        <EditText
+            android:id="@+id/editboxId"
             android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:orientation="vertical"/>
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editboxPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="12"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Login"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Sign Up"
+            android:textColor="@color/white" />
 
         <LinearLayout
-            android:id="@+id/Title"
             android:layout_width="match_parent"
-            android:layout_height="216dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/icon_Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@drawable/drug" />
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
 
             <TextView
-                android:id="@+id/txt_Title"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Care\nRoutine"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="50dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Content"
-            android:layout_width="352dp"
-            android:layout_height="344dp"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editboxId"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Email"
-                android:text="@={viewModel.eID}"
-                android:inputType="textEmailAddress"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:id="@+id/Margin"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical"/>
-
-            <EditText
-                android:id="@+id/editboxPw"
-                android:text="@={viewModel.ePW}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="12"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:id="@+id/Margin2"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#000000"
-                android:enabled="true"
-                android:text="Login"
-                android:onClick="@{view -> viewModel.loginWithRecaptcha(view.getContext())}"
-                android:textColor="@color/white" />
-
-            <LinearLayout
-                android:id="@+id/Margin4"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical"></LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#000000"
-                android:enabled="true"
-                android:text="Sign Up"
-                android:onClick="@{() -> viewModel.signUp()}"
-                android:textColor="@color/white" />
-
-            <LinearLayout
-                android:id="@+id/Margin3"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical"></LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:onClick="@{() -> viewModel.findId()}"
-                    android:text="아이디 찾기" />
-
-                <LinearLayout
-                    android:layout_width="74dp"
-                    android:layout_height="23dp"
-                    android:orientation="vertical"></LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:onClick="@{() -> viewModel.findPw()}"
-                    android:text="비밀번호 찾기" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Margin5"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txt_or"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="- 소셜 로그인 -"
-                android:textAlignment="center" />
-
-            <LinearLayout
-                android:id="@+id/Margin6"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/btnLoginG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{view -> viewModel.loginG(view.getContext())}"
-                />
+                android:text="계정정보 찾기" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/BottomMargin"
+        <TextView
+            android:id="@+id/txt_or"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:layout_height="wrap_content"
+            android:text="- 소셜 로그인 -"
+            android:textAlignment="center"
+            android:layout_marginTop="16dp" />
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnLoginG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-</layout>
+
+</LinearLayout>

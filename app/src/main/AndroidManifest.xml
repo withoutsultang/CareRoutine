@@ -18,11 +18,13 @@
         android:theme="@style/Theme.CareRoutine"
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
+
+<!--        <activity-->
+<!--            android:name="com.withoutsultang.careroutine.view.MainActivity"-->
+<!--            android:exported="false" />-->
+
         <activity
             android:name="com.withoutsultang.careroutine.view.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.withoutsultang.careroutine.view.SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,14 +32,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.withoutsultang.careroutine.view.SignUpActivity"
             android:exported="false" />
+
         <activity
             android:name="com.withoutsultang.careroutine.view.FindAccountActivity"
             android:exported="false" />
+
         <activity
             android:name="com.withoutsultang.careroutine.view.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.withoutsultang.careroutine.view.AlarmSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.withoutsultang.careroutine.view.SearchDrugActivity"
             android:exported="false" />
 
         <meta-data

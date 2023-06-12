@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Contents"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/TopMargin"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:layout_height="22dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edit"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="222dp"
             android:layout_height="match_parent"
-            android:hint="enter text to search"/>
+            android:orientation="vertical" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:onClick="mOnClick"
-            android:text="search"
-            android:textSize="12sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:orientation="vertical" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button15"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:background="@xml/stroke_background"
+            android:elevation="50dp"
+            android:text="약 등록하기"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:orientation="vertical" />
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="8sp"
-            android:textStyle="bold"/>
-
-    </ScrollView>
 </LinearLayout>

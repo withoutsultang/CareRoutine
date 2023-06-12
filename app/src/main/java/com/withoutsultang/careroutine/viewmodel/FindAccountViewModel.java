@@ -28,17 +28,19 @@ public class FindAccountViewModel extends ViewModel {
     DatabaseReference userRef = database.getReference("users");
 
     //xml에서 데이터바인딩한 변수 관찰가능한 변수로 생성
+/*
     public ObservableField<String> fidemail = new ObservableField<>("");
 
     public ObservableField<String> fidbirth = new ObservableField<>("");
+*/
 
     public ObservableField<String> fpwemail = new ObservableField<>("");
-
+/*
     public ObservableField<String> fpwcode = new ObservableField<>("");
 
     public ObservableField<String> currentpw = new ObservableField<>("");
 
-    public ObservableField<String> changepw = new ObservableField<>("");
+    public ObservableField<String> changepw = new ObservableField<>("");*/
     //화면전환시 필요
     private Context context;
 
@@ -47,9 +49,9 @@ public class FindAccountViewModel extends ViewModel {
         this.context = context;
     }
 
-    public void onClickSearch() {
+    /*public void onClickSearch() {
 
-    }
+    }*/
 
     public void onClickSend(){
         String email = fpwemail.get();
@@ -63,7 +65,7 @@ public class FindAccountViewModel extends ViewModel {
                 });
     }
 
-    public void onClickCodeCheck() {
+    /*public void onClickCodeCheck() {
         String pwCode = fpwcode.get();
         firebaseAuth.verifyPasswordResetCode(pwCode)
                 .addOnCompleteListener(task -> {
@@ -86,5 +88,5 @@ public class FindAccountViewModel extends ViewModel {
                         Toast.makeText(context, "비밀번호 재설정에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
+    }*/
 }

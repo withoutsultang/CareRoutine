@@ -177,6 +177,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="35dp"
+            android:checked="@={signUpViewModel.isTermsChecked}"
             android:text="동의"
             android:textSize="10dp"
             app:layout_constraintBottom_toTopOf="@+id/bRegistration"

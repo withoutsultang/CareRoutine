@@ -9,22 +9,26 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.withoutsultang.careroutine.model.User;
 
 public class LoginViewModel extends ViewModel {
 
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("users");
 
-    public ObservableField<String> eID = new ObservableField<>("");
-    public ObservableField<String> ePW = new ObservableField<>("");
+    public ObservableField<String> email = new ObservableField<>("");
+    public ObservableField<String> pw = new ObservableField<>("");
 
     private Context context;
 
     private static MutableLiveData<Boolean> navigateToSignUpActivity = new MutableLiveData<>();
+
     private static MutableLiveData<Boolean> navigateToFindAccountActivity = new MutableLiveData<>();
+
+    private static MutableLiveData<Boolean> navigateToMainActivity = new MutableLiveData<>();
 
     public LoginViewModel(Context context) {
         this.context = context;
@@ -43,6 +47,27 @@ public class LoginViewModel extends ViewModel {
 
     }
 
+    public void onClickLogin() {
+        signInWithEmailAndPassword(email.get(), pw.get());
+        navigateToMainActivity();
+
+    }
+
+    private void signInWithEmailAndPassword(String email, String pw) {
+        auth.signInWithEmailAndPassword(email,pw)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        FirebaseUser user = auth.getCurrentUser();
+                        if(user != null){
+                            navigateToMainActivity();
+                        }
+                        else {
+                            Toast.makeText(context, "로그인 샐패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     public static LiveData<Boolean> getNavigateToSignUpActivity() {
         return navigateToSignUpActivity;
     }
@@ -57,5 +82,13 @@ public class LoginViewModel extends ViewModel {
 
     public void navigateToFindAccountActivity() {
         navigateToFindAccountActivity.setValue(true);
+    }
+
+    public static LiveData<Boolean> getNavigateToMainActivity() {
+        return navigateToMainActivity;
+    }
+
+    public void navigateToMainActivity() {
+        navigateToMainActivity.setValue(true);
     }
 }

@@ -60,16 +60,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="or"
-            app:layout_constraintBottom_toTopOf="@+id/editboxId"
+            app:layout_constraintBottom_toTopOf="@+id/editboxEmail"
             app:layout_constraintEnd_toEndOf="@+id/img_kakaoicon"
             app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="@+id/img_kakaoicon"
             app:layout_constraintTop_toBottomOf="@+id/img_kakaoicon" />
 
         <EditText
-            android:id="@+id/editboxId"
-
-            android:hint="ID"
+            android:id="@+id/editboxEmail"
+            android:text="@={viewModel.email}"
+            android:hint="Email"
             android:layout_width="211dp"
             android:layout_height="38dp"
             android:layout_marginBottom="364dp"
@@ -83,22 +83,22 @@
 
         <EditText
             android:id="@+id/editboxPw"
-
-            android:hint="PASSWORD"
+            android:text="@={viewModel.pw}"
+            android:hint="Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editboxId"
+            app:layout_constraintEnd_toEndOf="@+id/editboxEmail"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editboxId"
-            app:layout_constraintTop_toBottomOf="@+id/editboxId"
+            app:layout_constraintStart_toStartOf="@+id/editboxEmail"
+            app:layout_constraintTop_toBottomOf="@+id/editboxEmail"
             app:layout_constraintVertical_bias="0.023" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1"
-
+            android:onClick="@{() -> viewModel.onClickLogin()}"
             android:layout_width="204dp"
             android:layout_height="48dp"
             android:backgroundTint="#000000"
@@ -114,24 +114,12 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:onClick="@{() -> viewModel.onClickFindAccount()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:onClick="@{() -> viewModel.onClickFindAccount()}"
             android:text="비밀번호 찾기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/button1"
-            app:layout_constraintTop_toBottomOf="@+id/button1"
-            app:layout_constraintVertical_bias="0.047" />
-
-        <TextView
-            android:id="@+id/textView2"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="아이디 찾기"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/button1"
             app:layout_constraintTop_toBottomOf="@+id/button1"
             app:layout_constraintVertical_bias="0.047" />

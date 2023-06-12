@@ -27,8 +27,8 @@ import com.withoutsultang.careroutine.model.User;
 public class SignUpViewModel extends ViewModel {
     public ObservableField<String> ePW = new ObservableField<>("");
     public ObservableField<String> eBirth = new ObservableField<>("");
-    public ObservableField<String> eEmail= new ObservableField<>("");
-    public ObservableField<String> eName= new ObservableField<>("");
+    public ObservableField<String> eEmail = new ObservableField<>("");
+    public ObservableField<String> eName = new ObservableField<>("");
     public ObservableField<Boolean> isTermsChecked = new ObservableField<>(false);
 
     private Context context;
@@ -132,32 +132,34 @@ public class SignUpViewModel extends ViewModel {
             return;
         }
         // 약관 동의 체크 확인
+
         Boolean isTermsCheckedValue = isTermsChecked.get();
-        if (isTermsCheckedValue == null || !isTermsCheckedValue) {
+        if (!isTermsCheckedValue) {
             // 약관 팝업 표시
             showTermsPopup(context);
-            return;
+        } else {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference usersRef = database.getReference("users");
+            auth.createUserWithEmailAndPassword(eEmail.get(), ePW.get())
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+
+                            String userId = auth.getCurrentUser().getUid();
+                            User user = new User(eEmail.get(), ePW.get(), eName.get(), eBirth.get());
+                            usersRef.child(userId).setValue(user);
+
+                            // 회원가입 성공 처리
+                            Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                            navigateToLoginActivity();
+                        } else {
+                            // 회원가입 실패 처리
+                            Toast.makeText(context, "회원가입 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference usersRef = database.getReference("users");
-        auth.createUserWithEmailAndPassword(eEmail.get(), ePW.get())
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-
-                        String userId = auth.getCurrentUser().getUid();
-                        User user = new User(eEmail.get(), ePW.get(), eName.get(), eBirth.get());
-                        usersRef.child(userId).setValue(user);
-
-                        // 회원가입 성공 처리
-                        navigateToLoginActivity();
-                    } else {
-                        // 회원가입 실패 처리
-                        Toast.makeText(context, "회원가입 실패", Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
+
     public void showTermsPopup(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);

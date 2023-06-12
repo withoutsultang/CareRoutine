@@ -38,5 +38,12 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        viewModel.getNavigateToMainActivity().observe(this, navigate -> {
+            if (navigate) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            }
+        });
     }
 }

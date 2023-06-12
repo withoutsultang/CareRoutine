@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,8 +17,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.careroutine.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.withoutsultang.careroutine.model.User;
 
 public class SignUpViewModel extends ViewModel {
@@ -37,6 +41,45 @@ public class SignUpViewModel extends ViewModel {
 
     //중복체크 버튼
     public void onClickVerify() {
+
+        // 이메일 입력 확인
+        String email = eEmail.get();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(context, "이메일을 입력하세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 이메일 형식 확인
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(context, "올바른 이메일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean isEmailExists = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    if (user != null && email.equals(user.getEmail())) {
+                        isEmailExists = true;
+                        break;
+                    }
+                }
+
+                if (isEmailExists) {
+                    Toast.makeText(context, "이메일이 이미 존재합니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "이메일 사용 가능합니다", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 취소될 경우 처리할 내용 추가
+            }
+        });
     }
 
     public void onClickSignUp() {

@@ -37,31 +37,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.119" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
             android:id="@+id/button"
             android:onClick="@{() -> viewModel.onClickD()}"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_marginEnd="73dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edit"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="검색"
-            app:layout_constraintVertical_bias="0.12"/>
-
-        <!-- 전달 버튼 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/transferButton"
-            android:onClick="@{() -> viewModel.transferData()}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="설정으로 전달"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/result" />
-
+            app:layout_constraintVertical_bias="0.12"
+            app:srcCompat="@drawable/mag" />
 
         <TextView
             android:id="@+id/result"

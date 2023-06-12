@@ -23,5 +23,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnSearchDrug = findViewById(R.id.btn_search_drug);
+        btnSearchDrug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSearchDrugActivity();
+            }
+        });
+    }
+
+    public void openSearchDrugActivity() {
+        Intent intent = new Intent(this, SearchDrugActivity.class);
+        startActivity(intent);
     }
 }

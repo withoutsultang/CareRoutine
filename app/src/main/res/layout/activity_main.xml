@@ -22,10 +22,17 @@
 
         <Button
             android:id="@+id/btn_alarm"
-            android:layout_width="150dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:onClick="setAlarm"
             android:text="알람 설정하기"
+            android:textSize="12sp" />
+        <Button
+            android:id="@+id/btn_search_drug"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:onClick="openSearchDrugActivity"
+            android:text="약 검색하기"
             android:textSize="12sp" />
 
 

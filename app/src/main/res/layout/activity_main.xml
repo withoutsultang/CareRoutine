@@ -21,12 +21,13 @@
             android:hint="enter text to search"/>
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
+            android:id="@+id/btn_alarm"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:onClick="mOnClick"
-            android:text="search"
+            android:onClick="setAlarm"
+            android:text="알람 설정하기"
             android:textSize="12sp" />
+
 
     </LinearLayout>
 

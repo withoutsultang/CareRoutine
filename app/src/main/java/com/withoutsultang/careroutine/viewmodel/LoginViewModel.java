@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewModel extends ViewModel {
 
-    FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("users");
 
@@ -48,24 +47,20 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onClickLogin() {
-        signInWithEmailAndPassword(email.get(), pw.get());
-        navigateToMainActivity();
-
-    }
-
-    private void signInWithEmailAndPassword(String email, String pw) {
-        auth.signInWithEmailAndPassword(email,pw)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        FirebaseUser user = auth.getCurrentUser();
-                        if(user != null){
-                            navigateToMainActivity();
-                        }
-                        else {
-                            Toast.makeText(context, "로그인 샐패", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String inputemail = email.get();
+        String inputpw = pw.get();
+        auth.signInWithEmailAndPassword(inputemail,inputpw).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                FirebaseUser user = auth.getCurrentUser();
+                if(user != null){
+                    navigateToMainActivity();
+                }
+                else {
+                    Toast.makeText(context, "로그인 샐패", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public static LiveData<Boolean> getNavigateToSignUpActivity() {

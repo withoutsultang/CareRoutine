@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.example.careroutine.R;
 import com.example.careroutine.databinding.ActivityLoginBinding;
 import com.withoutsultang.careroutine.viewmodel.LoginViewModel;
-import com.withoutsultang.careroutine.viewmodel.SignUpViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 

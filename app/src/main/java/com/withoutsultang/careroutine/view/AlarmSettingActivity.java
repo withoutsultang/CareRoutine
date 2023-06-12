@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.careroutine.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,14 +35,24 @@ public class AlarmSettingActivity extends AppCompatActivity {
     private TimePicker timePicker;
     private LinearLayout alarmMorningInfo, alarmAfternoonInfo, alarmEveningInfo;
     private DatabaseReference databaseRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_setting);
 
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
         // Firebase Realtime Database 초기화
-        databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child("alarms");
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("alarms");
+        } else {
+            // 사용자가 로그인하지 않은 경우에 대한 처리 (예: 로그인 페이지로 이동, 오류 메시지 표시 등)
+        }
 
         // 뷰 요소 초기화
         txtDrug = findViewById(R.id.txtDrug);

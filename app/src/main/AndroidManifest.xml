@@ -43,6 +43,12 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="758bed09e53b41fa875e69103a21100a" />
+
+        <receiver
+            android:name="com.withoutsultang.careroutine.view.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
     </application>
 
 </manifest>

@@ -1,248 +1,236 @@
 package com.withoutsultang.careroutine.view;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.example.careroutine.R;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Switch;
-import android.widget.TimePicker;
-import android.widget.Toast;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import com.example.careroutine.R;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class AlarmSettingActivity extends Activity {
-    private LinearLayout alarmInfoContainer;
+public class AlarmSettingActivity extends AppCompatActivity {
+    private TextView txtDrug;
     private TimePicker timePicker;
-    private List<String> alarmTimes;
-    private int requestCode = 0;
-    private Switch switchVibe;
-    private Button btnDelete;
-
-    // Firebase Realtime Database에 대한 참조를 가져옴
-    private DatabaseReference alarmRef;
-
-    // 채널 ID 정의
-    private static final String CHANNEL_ID = "my_channel_id";
+    private LinearLayout alarmMorningInfo, alarmAfternoonInfo, alarmEveningInfo;
+    private DatabaseReference databaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_setting);
 
-        // Firebase Realtime Database의 "alarms" 경로에 대한 참조를 가져옴
-        alarmRef = FirebaseDatabase.getInstance().getReference("alarms");
+        // Firebase Realtime Database 초기화
+        databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child("alarms");
 
-        // XML에서 뷰 요소들을 찾아와 변수에 할당
-        alarmInfoContainer = findViewById(R.id.alarm_info_container);
+        // 뷰 요소 초기화
+        txtDrug = findViewById(R.id.txtDrug);
         timePicker = findViewById(R.id.time_picker);
-        alarmTimes = new ArrayList<>();
-        btnDelete = findViewById(R.id.btn_delete_all);
-        Button btnAdd = findViewById(R.id.btn_add);
-        Button btnSave = findViewById(R.id.btn_save);
-        Button btnCancel = findViewById(R.id.btn_cancel);
+        alarmMorningInfo = findViewById(R.id.alarm_morning_info);
+        alarmAfternoonInfo = findViewById(R.id.alarm_afternoon_info);
+        alarmEveningInfo = findViewById(R.id.alarm_evening_info);
 
-        // '추가' 버튼 클릭 시 알람 정보 추가
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { addAlarmInfo(); }
-        });
-
-        // '저장' 버튼 클릭 시 알람 저장
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        // 약 검색 버튼 클릭 시 SearchDrugActivity로 이동
+        Button btnSearchDrug = findViewById(R.id.btn_search_drug);
+        btnSearchDrug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveAlarms();
+                Intent intent = new Intent(AlarmSettingActivity.this, SearchDrugActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
-        // '삭제' 버튼 클릭 시 모든 알람 삭제
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { deleteAllAlarms(); }
-        });
-
-        // '취소' 버튼 클릭 시 이전 화면으로 돌아가기
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { cancelActivity(); }
-        });
-    }
-
-
-    // 알람 정보 추가
-    private void addAlarmInfo() {
-        int hour = timePicker.getHour();
-        int minute = timePicker.getMinute();
-
-        // 시간을 형식에 맞게 문자열로 변환하여 리스트에 추가
-        String alarmTime = String.format("%02d:%02d", hour, minute);
-        alarmTimes.add(alarmTime);
-
-        // 버튼 생성 및 클릭 리스너 설정
-        Button alarmButton = new Button(this);
-        alarmButton.setText(String.valueOf(alarmTime));
-        alarmButton.setOnClickListener(new View.OnClickListener() {
+        // 전체 삭제 버튼 클릭 시 Firebase 데이터베이스에서 모든 알림 삭제
+        Button btnDeleteAll = findViewById(R.id.btn_delete_all);
+        btnDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeAlarmInfo(alarmTime);
+                databaseRef.removeValue();
             }
         });
 
-        // 알람 정보를 담고 있는 버튼을 컨테이너에 추가
-        alarmInfoContainer.addView(alarmButton);
-    }
-
-    // 알람 정보 제거
-    private void removeAlarmInfo(String alarmTime) {
-        alarmTimes.remove(alarmTime);
-        refreshAlarmInfo();
-
-        // Firebase Realtime Database에서 알람 정보 제거
-        alarmRef.orderByValue().equalTo(alarmTime).addListenerForSingleValueEvent(new ValueEventListener() {
+        // 아침 알림 추가 버튼 클릭 시 Firebase 데이터베이스에 알림 추가
+        Button btnAddMorning = findViewById(R.id.btn_add_morning);
+        btnAddMorning.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    snapshot.getRef().removeValue();
-                }
+            public void onClick(View v) {
+                addAlarm("morning");
+            }
+        });
+
+        // 점심 알림 추가 버튼 클릭 시 Firebase 데이터베이스에 알림 추가
+        Button btnAddAfternoon = findViewById(R.id.btn_add_afternoon);
+        btnAddAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAlarm("afternoon");
+            }
+        });
+
+        // 저녁 알림 추가 버튼 클릭 시 Firebase 데이터베이스에 알림 추가
+        Button btnAddEvening = findViewById(R.id.btn_add_evening);
+        btnAddEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAlarm("evening");
+            }
+        });
+
+        // 아침 알림 삭제 버튼 클릭 시 Firebase 데이터베이스에서 알림 삭제
+        Button btnDeleteMorning = findViewById(R.id.btn_delete_morning);
+        btnDeleteMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAlarm("morning");
+            }
+        });
+
+        // 점심 알림 삭제 버튼 클릭 시 Firebase 데이터베이스에서 알림 삭제
+        Button btnDeleteAfternoon = findViewById(R.id.btn_delete_afternoon);
+        btnDeleteAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAlarm("afternoon");
+            }
+        });
+
+        // 저녁 알림 삭제 버튼 클릭 시 Firebase 데이터베이스에서 알림 삭제
+        Button btnDeleteEvening = findViewById(R.id.btn_delete_evening);
+        btnDeleteEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAlarm("evening");
+            }
+        });
+
+        // Firebase Realtime Database에서 데이터 변경 감지 및 표시
+        databaseRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
+                showAlarmInfo(snapshot);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // 에러 처리
+            public void onChildChanged(@NonNull DataSnapshot snapshot, String previousChildName) {
+                showAlarmInfo(snapshot);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                clearAlarmInfo(snapshot.getKey());
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
 
-    // 알람 정보를 갱신하여 컨테이너에 표시
-    private void refreshAlarmInfo() {
-        alarmInfoContainer.removeAllViews();
-        for (String alarmTime : alarmTimes) {
-            Button alarmButton = new Button(this);
-            alarmButton.setText(alarmTime);
-            alarmButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeAlarmInfo(alarmTime);
-                }
-            });
-            alarmInfoContainer.addView(alarmButton);
+    // SearchDrugActivity에서 선택한 값을 가져와서 txtDrug에 표시
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String drugName = data.getStringExtra("drugName");
+            txtDrug.setText(drugName);
         }
     }
 
-    // 알람 저장
-    private void saveAlarms() {
-        if (alarmTimes.isEmpty()) {
-            Toast.makeText(this, "알람을 추가해주세요.", Toast.LENGTH_SHORT).show();
-            return;
+    // Firebase 데이터베이스에 알림 추가
+    private void addAlarm(String time) {
+        String drugName = txtDrug.getText().toString().trim();
+        int hour = timePicker.getCurrentHour();
+        int minute = timePicker.getCurrentMinute();
+
+        String key = databaseRef.push().getKey();
+        if (key != null) {
+            Map<String, Object> alarmValues = new HashMap<>();
+            alarmValues.put("drugName", drugName);
+            alarmValues.put("hour", hour);
+            alarmValues.put("minute", minute);
+
+            databaseRef.child(time).child(key).updateChildren(alarmValues);
         }
+    }
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+    // Firebase 데이터베이스에서 알림 삭제
+    private void deleteAlarm(String time) {
+        databaseRef.child(time).removeValue();
+    }
 
-        // 알람 채널 생성
-        createNotificationChannel();
+    // Firebase 데이터베이스에서 가져온 알림 정보를 화면에 표시
+    private void showAlarmInfo(DataSnapshot dataSnapshot) {
+        String key = dataSnapshot.getKey();
+        if (key != null) {
+            String drugName = dataSnapshot.child("drugName").getValue(String.class);
+            int hour = dataSnapshot.child("hour").getValue(Integer.class);
+            int minute = dataSnapshot.child("minute").getValue(Integer.class);
 
-        for (int i = 0; i < alarmTimes.size(); i++) {
-            String alarmTime = alarmTimes.get(i);
-            String[] timeParts = alarmTime.split(":");
-            int hour = Integer.parseInt(timeParts[0]);
-            int minute = Integer.parseInt(timeParts[1]);
+            TextView textView = createAlarmTextView(drugName, hour, minute);
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hour);
-            calendar.set(Calendar.MINUTE, minute);
-            calendar.set(Calendar.SECOND, 0);
-
-            if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-                // 알람 시간이 과거인 경우, 캘린더에 1일을 추가
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            switch (key) {
+                case "morning":
+                    alarmMorningInfo.removeAllViews();
+                    alarmMorningInfo.addView(textView);
+                    break;
+                case "afternoon":
+                    alarmAfternoonInfo.removeAllViews();
+                    alarmAfternoonInfo.addView(textView);
+                    break;
+                case "evening":
+                    alarmEveningInfo.removeAllViews();
+                    alarmEveningInfo.addView(textView);
+                    break;
             }
-
-            int alarmId = requestCode++;
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmId, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            // 알림 빌더 생성
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.drug)
-                    .setContentTitle("알람")
-                    .setContentText("알람이 울립니다.")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .setAutoCancel(true);
-
-            // 진동 설정
-            if (switchVibe.isChecked()) {
-                long[] vibrationPattern = {0, 500, 200, 500}; // 진동 패턴: 지연, 진동, 지연, 진동...
-                builder.setVibrate(vibrationPattern);
-            }
-
-            // 알람 등록
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(alarmId, builder.build());
-
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-            // Firebase Realtime Database에 알람 정보 추가
-            String alarmKey = alarmRef.push().getKey();
-            alarmRef.child(alarmKey).setValue(alarmTime);
-        }
-
-        Toast.makeText(this, "알람이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-    }
-
-    // 알람 채널 생성
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "AlarmChannel";
-            String description = "Channel for alarm notifications";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
         }
     }
 
-    // 모든 알람 삭제
-    private void deleteAllAlarms() {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-
-        for (int i = 0; i < alarmTimes.size(); i++) {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmManager.cancel(pendingIntent);
+    // 화면에 표시된 알림 정보를 삭제
+    private void clearAlarmInfo(String time) {
+        switch (time) {
+            case "morning":
+                alarmMorningInfo.removeAllViews();
+                break;
+            case "afternoon":
+                alarmAfternoonInfo.removeAllViews();
+                break;
+            case "evening":
+                alarmEveningInfo.removeAllViews();
+                break;
         }
-
-        alarmTimes.clear();
-        refreshAlarmInfo();
-
-        // Firebase Realtime Database의 "alarms" 경로에 있는 모든 알람 정보 삭제
-        alarmRef.removeValue();
-
-        Toast.makeText(this, "모든 알람이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
-    // 이전 화면으로 이동
-    private void cancelActivity() {
-        onBackPressed();
+    // 알림 정보를 담은 TextView 생성
+    private TextView createAlarmTextView(String drugName, int hour, int minute) {
+        TextView textView = new TextView(this);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        textView.setText(drugName + " - " + hour + ":" + minute);
+        textView.setTextColor(ContextCompat.getColor(this, R.color.black));
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        textView.setPadding(8, 8, 8, 8);
+//        textView.setBackground(ContextCompat.getDrawable(this, R.xml.stroke_icon));
+
+        return textView;
     }
 }

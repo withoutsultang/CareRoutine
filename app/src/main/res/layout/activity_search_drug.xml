@@ -1,57 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.withoutsultang.careroutine.view.SearchDrugActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <!-- 알러지 모아보기 버튼 -->
-
-
-    <!-- 약 검색창 -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.withoutsultang.careroutine.viewmodel.SearchDrugViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchlayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.withoutsultang.careroutine.view.SearchDrugActivity">
+
+
+        <!-- 알러지 모아보기 버튼 -->
+
+
+        <!-- 약 검색창 -->
 
         <EditText
             android:id="@+id/edit"
-            android:layout_width="198dp"
+            android:text="@={viewModel.txtSearchD}"
+            android:layout_width="0dp"
             android:layout_height="35dp"
+            android:layout_marginStart="69dp"
+            android:layout_marginEnd="31dp"
             android:hint="검색할 약을 입력해주세요."
             android:singleLine="true"
             android:textSize="12sp"
-            tools:layout_editor_absoluteX="107dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintHorizontal_bias="0.69"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.119" />
 
         <ImageView
             android:id="@+id/button"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/mag"
-            tools:layout_editor_absoluteX="338dp"
-            tools:layout_editor_absoluteY="3dp" />
+            android:onClick="@{() -> viewModel.onClickD()}"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="73dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12"
+            app:srcCompat="@drawable/mag" />
+
+        <TextView
+            android:id="@+id/result"
+            android:text="@={viewModel.txtD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="246dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- 약 리스트 -->
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="246dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- 약 리스트 -->
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

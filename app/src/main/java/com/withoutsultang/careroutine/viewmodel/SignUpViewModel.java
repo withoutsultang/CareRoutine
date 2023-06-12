@@ -21,12 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.withoutsultang.careroutine.model.User;
 
 public class SignUpViewModel extends ViewModel {
-
-    public ObservableField<String> eID = new ObservableField<>("");
     public ObservableField<String> ePW = new ObservableField<>("");
     public ObservableField<String> eBirth = new ObservableField<>("");
     public ObservableField<String> eEmail= new ObservableField<>("");
     public ObservableField<String> eName= new ObservableField<>("");
+    public ObservableField<Boolean> isTermsChecked = new ObservableField<>(false);
 
     private Context context;
 
@@ -89,6 +88,13 @@ public class SignUpViewModel extends ViewModel {
             Toast.makeText(context, "올바른 생년월일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
             return;
         }
+        // 약관 동의 체크 확인
+        Boolean isTermsCheckedValue = isTermsChecked.get();
+        if (isTermsCheckedValue == null || !isTermsCheckedValue) {
+            // 약관 팝업 표시
+            showTermsPopup(context);
+            return;
+        }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -120,6 +126,8 @@ public class SignUpViewModel extends ViewModel {
 
         Button btnTermsAgree = view.findViewById(R.id.btnTermsAgree);
         btnTermsAgree.setOnClickListener(v -> {
+            // 약관 동의 처리를 수행하세요
+            isTermsChecked.set(true);
         });
 
         builder.setView(view);

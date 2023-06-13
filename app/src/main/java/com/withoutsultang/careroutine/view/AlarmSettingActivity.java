@@ -3,8 +3,15 @@ package com.withoutsultang.careroutine.view;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -12,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +69,15 @@ public class AlarmSettingActivity extends AppCompatActivity {
         alarmMorningInfo = findViewById(R.id.alarm_morning_info);
         alarmAfternoonInfo = findViewById(R.id.alarm_afternoon_info);
         alarmEveningInfo = findViewById(R.id.alarm_evening_info);
+
+        Button btnMain = findViewById(R.id.btn_to_main);
+        btnMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlarmSettingActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 약 검색 버튼 클릭 시 SearchDrugActivity로 이동
         Button btnSearchDrug = findViewById(R.id.btn_search_drug);
@@ -192,11 +210,58 @@ public class AlarmSettingActivity extends AppCompatActivity {
 
             databaseRef.child(time).child(key).updateChildren(alarmValues);
         }
+        // 알람 설정
+        setAlarm(hour, minute);
     }
+
+    private void setAlarm(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        // 현재 시간보다 이전인 경우, 다음 날 설정
+        if (calendar.before(Calendar.getInstance())) {
+            calendar.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmSettingActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            } else {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
+        }
+    }
+
+    public class AlarmReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 진동 울리기
+            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    vibrator.vibrate(1000);
+                }
+            }
+
+            // Toast 메시지 표시
+            Toast.makeText(context, "알람 시간입니다!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     // Firebase 데이터베이스에서 알림 삭제
     private void deleteAlarm(String time) {
         databaseRef.child(time).removeValue();
+
     }
 
     // Firebase 데이터베이스에서 가져온 알림 정보를 화면에 표시
@@ -231,7 +296,6 @@ public class AlarmSettingActivity extends AppCompatActivity {
         }
     }
 
-
     // 화면에 표시된 알림 정보를 삭제
     private void clearAlarmInfo(String time) {
         switch (time) {
@@ -260,4 +324,6 @@ public class AlarmSettingActivity extends AppCompatActivity {
         textView.setPadding(8, 8, 8, 8);
         return textView;
     }
+
+
 }

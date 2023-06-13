@@ -52,15 +52,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             public void onResult(@NonNull SafetyNetApi.RecaptchaTokenResult recaptchaTokenResult) {
                                 Status status = recaptchaTokenResult.getStatus();
                                 if ((status != null) && status.isSuccess()) {
-                                    // Indicates communication with reCAPTCHA service was
-                                    // successful. Use result.getTokenResult() to get the
-                                    // user response token if the user has completed
-                                    // the CAPTCHA.
+                                    // reCAPTCHA 서비스와 통신이 성공한 경우입니다.
+                                    // 사용자가 CAPTCHA를 완료했다면 result.getTokenResult()를 사용하여 사용자 응답 토큰을 가져올 수 있습니다.
                                     viewModel.onClickLogin();
                                 } else {
-                                    // An error occurred while communicating with the
-                                    // reCAPTCHA service. Refer to the status code to
-                                    // handle the error appropriately.
+                                    // reCAPTCHA 서비스와 통신 중 오류가 발생한 경우입니다.
+                                    // 오류를 적절히 처리하려면 상태 코드를 참조하세요.
 
                                     Toast.makeText(LoginActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
                                 }
@@ -97,14 +94,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
     }
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
+        // Google Play 서비스와의 연결이 성공한 경우 호출됩니다.
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        // Google Play 서비스와의 연결이 일시적으로 중단된 경우 호출됩니다.
     }
-
 }

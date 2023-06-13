@@ -27,7 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-
 public class LoginViewModel extends ViewModel {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,31 +47,27 @@ public class LoginViewModel extends ViewModel {
         this.context = context;
     }
 
-
     public void onClickSignUp() {
-
+        // 회원 가입 버튼 클릭 시 호출됩니다.
         navigateToSignUpActivity();
-
     }
 
     public void onClickFindAccount() {
-
+        // 계정 찾기 버튼 클릭 시 호출됩니다.
         navigateToFindAccountActivity();
-
     }
-
 
     public void onClickLogin() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String inputemail = email.get();
         String inputpw = pw.get();
-        auth.signInWithEmailAndPassword(inputemail,inputpw).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
+        auth.signInWithEmailAndPassword(inputemail, inputpw).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
                 FirebaseUser user = auth.getCurrentUser();
-                if(user != null){
+                if (user != null) {
+                    // 로그인에 성공한 경우 MainActivity로 이동합니다.
                     navigateToMainActivity();
-                }
-                else {
+                } else {
                     Toast.makeText(context, "로그인 실패", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -103,4 +98,3 @@ public class LoginViewModel extends ViewModel {
         navigateToMainActivity.setValue(true);
     }
 }
-
